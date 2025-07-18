@@ -1,0 +1,37 @@
+:root {
+
+  @include imColTintsBlack(#000000);
+
+    // iMotor Colours
+  --imColPrimary: #e1e43c;
+  --imColPrimary105: #c9cd36;
+  --imColSecondary: #3f3ce4;
+  // Neutral Colours
+  --imColBlackAbaddon: #231f20;
+  --imColWhite: #fff;
+  // Auxiliary Colours
+  --imColBlueLt: #b3d4fc;
+  --imColCyan: #00bcd4;
+  --imColCyanLt: #e0f3fe;
+  --imColMagenta: #e040fb;
+  --imColRed: #ff1644;
+  --imColRed5: #fdeee9;
+  --imColLime: #b2ff59;
+  --imColGreenLt: #e9fce9;
+  --imColGreenDk: #cddfcd;
+  --imColLime5: #e6ffd1;
+  --imColOrange: #ffa600;
+  --imColDarkModeRed: #822659;
+  --imColDarkModePurple: #42366c;
+  --imColDarkModeGreen: #004d61;
+  --imColDarkModeBlueSteel: #165185;
+  --imColDarkModeNeutral: #23272a;
+  --imColDarkModeNeutralGreen: #1c2930;
+  --imColDarkModeNeutralBlue: #1e273b;
+  --imColDarkModeNeutralRed: #2a2325; // more red
+
+    // THEME RADIUS
+  --imThemeBorderRadiusSm: 4px;
+  --imThemeBorderRadiusMd: 6px;
+  --imThemeBorderRadiusLg: 10px;
+}

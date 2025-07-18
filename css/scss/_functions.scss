@@ -1,0 +1,69 @@
+
+// stylelint-disable at-rule-no-unknown
+
+// str-replace() is used by svg-encode-hex() to percent-encode the '#' in hex colours for SVG data URIs.
+// This ensures colours like #ff0000 become %23ff0000, preventing issues when embedding SVGs in CSS or HTML.
+// Usage: str-replace("foo#bar#baz", "#", "-") returns "foo-bar-baz"
+
+@function str-replace($string, $search, $replace: '') {
+  $s: '' + $string;
+  $f: '' + $search;
+  $r: '' + $replace;
+  $index: str-index($s, $f);
+  @if $index {
+    @return str-slice($s, 1, $index - 1) + $r + str-replace(str-slice($s, $index + str-length($f)), $f, $r);
+  }
+  @return $s;
+}
+
+// svg-encode-hex() encodes a hex color for safe use in SVG data URIs by replacing '#' with '%23'.
+// Usage: svg-encode-hex("#ff0000") returns "%23ff0000"
+
+@function svg-encode-hex($hex) {
+  @return str-replace($hex, '#', '%23');
+}
+
+// tone-lighten() returns a lighter tone of the given color by mixing it with white.
+// $percent = 0 returns pure white.
+// $percent = 100 returns the original color.
+// Values between 0 and 100 return progressively lighter tones.
+
+@function tone-lighten($color, $percent) {
+  @if ($percent == 0) {
+    @return #ffffff;
+  }
+  @else if ($percent == 100) {
+    @return $color;
+  }
+  @else if ($percent < 100) {
+    @return mix(#ffffff, $color, (100 - $percent));
+  }
+  @else {
+    @return $color;
+  }
+}
+
+// tone-range() returns a tone of the given color across a full range from white to black.
+// $percent = 0 returns pure white.
+// $percent = 100 returns the original color.
+// $percent = 200 returns pure black.
+// Values between 0 and 100 return lighter tones (mix with white).
+// Values between 100 and 200 return darker tones (mix with black).
+
+@function tone-range($color, $percent) {
+  @if ($percent <= 0) {
+    @return #ffffff;
+  }
+  @else if ($percent >= 200) {
+    @return #000000;
+  }
+  @else if ($percent < 100) {
+    @return mix(#ffffff, $color, 100 - $percent);
+  }
+  @else if ($percent > 100) {
+    @return mix(#000000, $color, $percent - 100);
+  }
+  @else {
+    @return $color;
+  }
+}

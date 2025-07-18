@@ -1,0 +1,65 @@
+// Buttons and Components
+
+.componentBtn {
+  cursor: pointer;
+  background-color: var(--imColBlack40);
+
+  &.inactive {
+    display: none;
+  }
+
+  &:not(.inactive):last-child {
+    margin-block-end: 0;
+    border: 10px solid orange;
+  }
+}
+
+.componentItemWrapper {
+  background-color: var(--imColSecondary);
+}
+
+.componentBtn,
+.componentItemWrapper {
+  font-size: 14px;
+  @include propertiesTransitionable;
+}
+
+.componentBtn.fading-out,
+.componentItemWrapper.fading-out{
+  @include propertiesTransitionEnd;
+}
+
+.componentBtn,
+.componentItemWrapper {
+  color: var(--imColWhite);
+  border: 0;
+  border-radius: var(--imThemeBorderRadiusSm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.icon-trigger {
+  font-size: 20px;
+  color: var(--imColWhite);
+  background-color: var(--imColBlack);
+  border-radius: 80px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 150ms ease-in-out, transform 150ms ease-in-out;
+
+  .componentBtn:hover & {
+    background-color: var( --imColSecondary);
+    transform: scale(1.15);
+  }
+}
+
+.icon-delete:hover {
+  transform: scale(1.15);
+}
+

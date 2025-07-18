@@ -1,0 +1,20 @@
+@mixin propertiesTransitionable {
+  opacity: 1;
+  height: 40px; // button height
+  margin: 0 0 10px 0;
+  padding: 5px;
+  overflow: hidden;
+  transition: opacity 500ms ease, height 500ms ease, margin 500ms ease, padding;
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+}
+
+@mixin propertiesTransitionEnd {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
