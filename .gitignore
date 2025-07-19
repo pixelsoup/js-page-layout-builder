@@ -4,3 +4,4 @@
 **/*.css
 *.html
 *.DS_Store
+/js/development-min.js
