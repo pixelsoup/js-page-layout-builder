@@ -31,24 +31,13 @@ const components = [
  * Creates and inserts all component add buttons into the aside container.
  */
 function renderComponentButtons(activeTab = 1) {
-  const tabPanels = document.getElementById('js-componentTabPanels');
-  tabPanels.innerHTML = '';
-
-    // Filter components by tab/row
-    let filtered;
-    if (activeTab === 1) filtered = components.filter(c => c.row === 1);
-    else if (activeTab === 2) filtered = components.filter(c => c.row === 2);
-    else filtered = components.filter(c => c.row === 3);
-
-    if (filtered.length === 0) {
-        tabPanels.innerHTML = '<div class="no-components">No components available for this tab.</div>';
-        return;
-    }
-
-    filtered.forEach(component => {
+const tabPanels = document.getElementById('js-componentTabPanels');
+if (!tabPanels.dataset.initialized) {
+    // Render all buttons once
+    components.forEach(component => {
         const button = document.createElement('button');
         button.id = `${component_button_id_prefix}${component.id}`;
-        button.className = 'componentBtn';
+        button.className = `componentBtn componentBtn-row${component.row}`;
         button.innerHTML = `${component.name} <span class="icon-trigger icon-add">+</span>`;
         button.onclick = () => {
             if (button.classList.contains('inactive')) return;
@@ -68,17 +57,29 @@ function renderComponentButtons(activeTab = 1) {
         };
         tabPanels.appendChild(button);
     });
-
-  updateButtonStates();
+    tabPanels.dataset.initialized = 'true';
+}
+// Toggle button visibility by tab
+components.forEach(component => {
+    const button = document.getElementById(`${component_button_id_prefix}${component.id}`);
+    if (button) {
+        if (component.row === activeTab) {
+            button.classList.remove('hidden');
+        } else {
+            button.classList.add('hidden');
+        }
+    }
+});
+updateButtonStates();
 }
 
 // Tab switching logic
 document.querySelectorAll('.componentTab').forEach(tab => {
-  tab.onclick = () => {
-    document.querySelectorAll('.componentTab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    renderComponentButtons(Number(tab.dataset.tab));
-  };
+    tab.onclick = () => {
+        document.querySelectorAll('.componentTab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderComponentButtons(Number(tab.dataset.tab));
+    };
 });
 
 // Initial render
@@ -114,14 +115,17 @@ function renderComponentItems() {
     if (component.row === 2) {
       selectorHTML = `
         <select id="${column_selector_id_prefix}${component.id}" class="componentColumnSelector">
-          <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>Column 2</option>
-          <option value="column3" ${component.column === column_3_value ? 'selected' : ''}>Column 3</option>
+          <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>Column 1</option>
+          <option value="column3" ${component.column === column_3_value ? 'selected' : ''}>Column 2</option>
         </select>
       `;
     }
 
     component_item.innerHTML = `
-      ${component.name}
+      <div class="componentItemHeaderName">
+        <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
+        ${component.name}
+      </div>
       <div class="componentItemTriggersWrapper">
         ${selectorHTML}
         <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>

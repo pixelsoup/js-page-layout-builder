@@ -4,13 +4,34 @@
   cursor: pointer;
   background-color: var(--imColBlack40);
 
-  &.inactive {
+  &.inactive,
+  &.hidden {
     display: none;
   }
 }
 
 .componentItemWrapper {
   background-color: var(--imColSecondary);
+}
+
+.componentItemHeaderName {
+  color: var(--imColWhite);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.icon-grabber {
+  width: 30px;
+  height: 30px;
+  fill: var(--imColWhite);
+  transition: fill 150ms ease-in-out, transform 150ms ease-in-out;
+
+  &:hover {
+    background-color: var(--imColSecondary);
+    transform: scale(1.15);
+  }
 }
 
 .componentBtn,
