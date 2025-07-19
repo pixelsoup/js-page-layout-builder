@@ -1,69 +1,95 @@
 // Configuration constants
-const column_1_value = 1;
 const column_2_value = 2;
+const column_3_value = 3;
 const component_button_id_prefix = 'js-componentBtn';
 const component_item_id_prefix = 'js-component';
 const component_item_wrapper_class = 'componentItemWrapper';
 const column_selector_id_prefix = 'js-colSelector';
 const fade_transition_duration = 500; // ms
 
+
 // Component data array
 const components = [
-  { id: 1, componentName: 'component_one', name: 'Image Carousel', active: false, column: column_1_value },
-  { id: 2, componentName: 'component_two', name: 'Form', active: false, column: column_1_value },
-  { id: 3, componentName: 'component_three', name: 'CTAs', active: false, column: column_1_value },
-  { id: 4, componentName: 'component_four', name: 'Key Features', active: false, column: column_1_value },
-  { id: 5, componentName: 'component_five', name: 'Dealer Location  ', active: false, column: column_1_value },
-  { id: 6, componentName: 'component_six', name: 'Comments', active: false, column: column_1_value },
-  { id: 7, componentName: 'component_seven', name: 'Full Specifications', active: false, column: column_1_value },
-  { id: 8, componentName: 'component_eight', name: 'Disclaimer', active: false, column: column_1_value },
-  { id: 9, componentName: 'component_nine', name: 'Stock Specials', active: false, column: column_1_value },
-  { id: 10, componentName: 'component_ten', name: 'Price Rating', active: false, column: column_1_value }
+    { id: 1, componentName: 'heading', name: 'Heading', active: false, column: null, row: 1 },
+    { id: 2, componentName: 'price', name: 'Price', active: false, column: null, row: 1 },
+    { id: 3, componentName: 'reserve_now', name: 'Reserve Now', active: false, column: null, row: 1 },
+    { id: 4, componentName: 'other', name: 'Other', active: false, column: null, row: 1 },
+    { id: 5, componentName: 'image_carousel', name: 'Image Carousel', active: false, column: column_2_value, row: 2 },
+    { id: 6, componentName: 'standard_form', name: 'Form', active: false, column: column_2_value, row: 2 },
+    { id: 7, componentName: 'ctas', name: 'CTAs', active: false, column: column_2_value, row: 2 },
+    { id: 8, componentName: 'key_features', name: 'Key Features', active: false, column: column_2_value, row: 2 },
+    { id: 9, componentName: 'dealer_location', name: 'Dealer Location', active: false, column: column_2_value, row: 2 },
+    { id: 10, componentName: 'comments', name: 'Comments', active: false, column: column_2_value, row: 2 },
+    { id: 11, componentName: 'full_specifications', name: 'Full Specifications', active: false, column: column_2_value, row: 2 },
+    { id: 12, componentName: 'disclaimer', name: 'Disclaimer', active: false, column: column_2_value, row: 2 },
+    { id: 13, componentName: 'stock_specials', name: 'Stock Specials', active: false, column: column_2_value, row: 2 },
+    { id: 14, componentName: 'price_rating', name: 'Price Rating', active: false, column: column_2_value, row: 2 },
+    { id: 15, componentName: 'similar_vehicles_carousel', name: 'Similar Vehicles Carousel', active: false, column: null, row: 3 }
 ];
 
 /**
  * Creates and inserts all component add buttons into the aside container.
  */
-function renderComponentButtons() {
-  const asideElement = document.getElementById('js-componentBtnsAside');
-  asideElement.innerHTML = ''; // Clear existing buttons
+function renderComponentButtons(activeTab = 1) {
+  const tabPanels = document.getElementById('js-componentTabPanels');
+  tabPanels.innerHTML = '';
 
-  components.forEach(component => {
-    // Create a new button for each component
-    const button = document.createElement('button');
-    button.id = `${component_button_id_prefix}${component.id}`;
-    button.className = 'componentBtn';
-    button.innerHTML = `${component.name} <span class="icon-trigger icon-add">+</span>`;
+    // Filter components by tab/row
+    let filtered;
+    if (activeTab === 1) filtered = components.filter(c => c.row === 1);
+    else if (activeTab === 2) filtered = components.filter(c => c.row === 2);
+    else filtered = components.filter(c => c.row === 3);
 
-    // Attach click handler
-    button.onclick = () => {
-      if (button.classList.contains('inactive')) return;
-      button.classList.add('fading-out');
+    if (filtered.length === 0) {
+        tabPanels.innerHTML = '<div class="no-components">No components available for this tab.</div>';
+        return;
+    }
 
-      if (component && !component.active) {
-        component.active = true;
-        component.column = column_1_value;
-        renderComponentItems(); // This will also update button state
-      }
+    filtered.forEach(component => {
+        const button = document.createElement('button');
+        button.id = `${component_button_id_prefix}${component.id}`;
+        button.className = 'componentBtn';
+        button.innerHTML = `${component.name} <span class="icon-trigger icon-add">+</span>`;
+        button.onclick = () => {
+            if (button.classList.contains('inactive')) return;
+            button.classList.add('fading-out');
+            if (component && !component.active) {
+                component.active = true;
+                // Assign column based on row/component
+                if (component.row === 1) component.column = 1;
+                else if (component.row === 2) component.column = column_2_value;
+                else if (component.row === 3) component.column = 4;
+                renderComponentItems();
+            }
+            setTimeout(() => {
+                button.classList.remove('fading-out');
+                button.classList.add('inactive');
+            }, fade_transition_duration);
+        };
+        tabPanels.appendChild(button);
+    });
 
-      setTimeout(() => {
-        button.classList.remove('fading-out');
-        button.classList.add('inactive');
-      }, fade_transition_duration);
-    };
-
-    asideElement.appendChild(button);
-  });
-
-  // Update button states after render
   updateButtonStates();
 }
 
+// Tab switching logic
+document.querySelectorAll('.componentTab').forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll('.componentTab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    renderComponentButtons(Number(tab.dataset.tab));
+  };
+});
 
+// Initial render
+document.querySelector('.componentTab[data-tab="1"]').classList.add('active');
+renderComponentButtons(1);
 
 // Cache DOM column elements
 const column_one = document.querySelector('#js-column1');
 const column_two = document.querySelector('#js-column2');
+const column_three = document.querySelector('#js-column3');
+const column_four = document.querySelector('#js-column4');
 
 /**
  * Renders all active component items into their respective columns.
@@ -72,36 +98,42 @@ const column_two = document.querySelector('#js-column2');
 function renderComponentItems() {
   column_one.innerHTML = '';
   column_two.innerHTML = '';
+  column_three.innerHTML = '';
+  column_four.innerHTML = '';
 
   components.forEach(component => {
     if (!component.active) return;
-
-    // Create a new component item DOM element
     const component_item = document.createElement('div');
     component_item.id = `${component_item_id_prefix}${component.id}`;
     component_item.className = component_item_wrapper_class;
-    component_item.dataset.position = column_1_value;
+    component_item.dataset.position = component.column;
     component_item.dataset.name = component.componentName;
 
-    // Populate the component's inner HTML using template literals
+    // Only show column selector for row 2 components
+    let selectorHTML = '';
+    if (component.row === 2) {
+      selectorHTML = `
+        <select id="${column_selector_id_prefix}${component.id}" class="componentColumnSelector">
+          <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>Column 2</option>
+          <option value="column3" ${component.column === column_3_value ? 'selected' : ''}>Column 3</option>
+        </select>
+      `;
+    }
+
     component_item.innerHTML = `
       ${component.name}
       <div class="componentItemTriggersWrapper">
-        <select id="${column_selector_id_prefix}${component.id}" class="componentColumnSelector">
-          <option value="column1" ${component.column === column_1_value ? 'selected' : ''}>
-            Column 1
-          </option>
-          <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>
-            Column 2
-          </option>
-        </select>
+        ${selectorHTML}
         <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>
       </div>
     `;
 
-    // Append the component to the correct column
-    const target_column = component.column === column_1_value ? column_one : column_two;
-    target_column.appendChild(component_item);
+    // Append to correct column
+    if (component.row === 1) column_one.appendChild(component_item);
+    else if (component.row === 2) {
+      const target_column = component.column === column_2_value ? column_two : column_three;
+      target_column.appendChild(component_item);
+    } else if (component.row === 3) column_four.appendChild(component_item);
   });
 
   updateButtonStates();
@@ -131,7 +163,7 @@ function attachComponentEvents() {
       const component_id = parseInt(selector.id.replace(column_selector_id_prefix, ''), 10);
       const component = components.find(c => c.id === component_id);
       if (component) {
-        component.column = selector.value === 'column1' ? column_1_value : column_2_value;
+        component.column = selector.value === 'column2' ? column_2_value : column_3_value;
         renderComponentItems();
       }
     };
@@ -164,30 +196,6 @@ function attachComponentEvents() {
     };
   });
 }
-
-// Attach event listeners to all add-component buttons
-document.querySelectorAll('.componentBtn').forEach(add_button => {
-  add_button.onclick = () => {
-    if (add_button.classList.contains('inactive')) return;
-
-    // Start fade-out animation on the button
-    add_button.classList.add('fading-out');
-
-    const component_id = parseInt(add_button.id.replace(component_button_id_prefix, ''), 10);
-    const component = components.find(c => c.id === component_id);
-    if (component && !component.active) {
-      component.active = true;
-      component.column = column_1_value;
-      renderComponentItems();
-    }
-
-    // After animation, set the button as inactive
-    setTimeout(() => {
-      add_button.classList.remove('fading-out');
-      add_button.classList.add('inactive');
-    }, fade_transition_duration);
-  };
-});
 
 // Initialize the UI by rendering all components
 renderComponentButtons();

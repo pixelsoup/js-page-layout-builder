@@ -7,11 +7,6 @@
   &.inactive {
     display: none;
   }
-
-  &:not(.inactive):last-child {
-    margin-block-end: 0;
-    border: 10px solid orange;
-  }
 }
 
 .componentItemWrapper {
@@ -38,6 +33,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px;
+  width: 100%;
 }
 
 .icon-trigger {
