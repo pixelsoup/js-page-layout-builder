@@ -1492,3 +1492,38 @@
   Sortable.version = '1.6.0';
   return Sortable;
 });
+
+// Custom initialization for your page
+function updatePositions(column) {
+  Array.from(column.children).forEach((child, idx) => {
+    child.dataset.position = idx + 1;
+    const id = parseInt(child.id.replace('js-component', ''), 10);
+    child.dataset.sorting = JSON.stringify({
+      id: id,
+      position: idx + 1,
+      index: idx
+    });
+  });
+}
+
+['js-column1', 'js-column2', 'js-column3', 'js-column4'].forEach(colId => {
+  const col = document.getElementById(colId);
+  if (col) {
+    Sortable.create(col, {
+      animation: 150,
+      handle: '.componentItemHeaderName',
+      draggable: '.componentItemWrapper',
+      onEnd: function (evt) {
+        updatePositions(col);
+      }
+    });
+  }
+});
+
+// Initial position update on page load
+window.addEventListener('DOMContentLoaded', () => {
+  ['js-column1', 'js-column2', 'js-column3', 'js-column4'].forEach(colId => {
+    const col = document.getElementById(colId);
+    if (col) updatePositions(col);
+  });
+});
