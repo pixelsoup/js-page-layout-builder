@@ -1,5 +1,5 @@
 // DOM elements
-const main_tabs_panel = document.getElementById('js-componentTabPanels');
+const main_tabs_panel = document.getElementById('js-componentTabPane');
 const column_one = document.querySelector('#js-column1');
 const column_two = document.querySelector('#js-column2');
 const column_three = document.querySelector('#js-column3');
@@ -175,6 +175,9 @@ function render_component_items() {
         </div>
       `;
       elements_container.appendChild(component_element);
+
+      // Attach event listener to info button
+      attachInfoButtonEvent(component.id);
     });
   });
 
@@ -243,6 +246,28 @@ function attach_component_events() {
       }, get_fade_transition_duration());
     };
   });
+}
+
+// Handles info button click to toggle visibility of component information
+function toggleComponentInformation(componentId) {
+  const allInfoDivs = document.querySelectorAll('.componentInfo');
+  const targetInfoDiv = document.getElementById(`js-component${componentId}-information`);
+
+  // Hide all information divs
+  allInfoDivs.forEach(div => div.classList.add('hidden'));
+
+  // Show the target information div
+  if (targetInfoDiv) {
+    targetInfoDiv.classList.remove('hidden');
+  }
+}
+
+// Dynamically attach event listener to info button for all components
+function attachInfoButtonEvent(componentId) {
+  const infoButton = document.getElementById(`js-component-btn-info${componentId}`);
+  if (infoButton) {
+    infoButton.onclick = () => toggleComponentInformation(componentId);
+  }
 }
 
 // Listen for custom event from SortableJS, update component order

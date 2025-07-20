@@ -2,14 +2,16 @@
 
 .layoutBuilderWrapper {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 4fr 1fr;
   align-items: start;
 }
 
-.componentBtnsAside {
+.componentBtnsAside,
+.componentInfoAside {
   background-color: var(--imColBlack10);
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: 10px;
   position: sticky;
   top: 0;
@@ -19,15 +21,16 @@
   }
 }
 
+.componentTabPane {
+  width: 100%;
+}
+
 .columnsWrapper {
   //border: 5px solid var(--imColBlack30);
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   margin: 5px;
 }
-
-$colBorderWidth: 10px;
-$colMargin: -($colBorderWidth / 2);
 
 .column {
   border: $colBorderWidth solid var(--imColBlack30);
@@ -48,4 +51,16 @@ $colMargin: -($colBorderWidth / 2);
 .column1,
 .column4 {
   grid-column: 1 / 3; // Span all columns
+}
+
+.componentInfoHeading {
+  font-size: 16px;
+  margin-block-end: 0;
+}
+
+.componentInfo {
+
+  &.hidden {
+    display: none;
+  }
 }

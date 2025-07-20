@@ -1,3 +1,7 @@
+// column borders
+$colBorderWidth: 10px;
+$colMargin: -($colBorderWidth / 2);
+
 :root {
 
   @include imColTintsBlack(#000000);
@@ -35,4 +39,5 @@
   --imThemeBorderRadiusMd: 6px;
   --imThemeBorderRadiusLg: 10px;
   --fadeTransitionDuration: 300ms;
+
 }

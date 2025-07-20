@@ -3,6 +3,11 @@
   src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-Regular.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Roboto Bold";
+  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-Bold.woff2") format("woff2");
+}
+
 *,
 *:before,
 *:after {
@@ -40,10 +45,15 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-size: 14px;
+  line-height: 1.4;
   color: var(--imColBlack);
   background-color: var(--imColWhite);
   height: 100%;
+}
+
+strong {
+  font-family: 'Roboto Bold', sans-serif;
 }
 
 h1,
@@ -69,4 +79,18 @@ li {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+
+.componentInfoTextWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.imRadioLabel {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
 }
