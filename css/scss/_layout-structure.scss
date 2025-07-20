@@ -20,18 +20,29 @@
 }
 
 .columnsWrapper {
-  border: 5px solid var(--imColBlack30);
+  //border: 5px solid var(--imColBlack30);
   display: grid;
   grid-template-columns: 1.2fr 1fr;
+  margin: 5px;
 }
 
+$colBorderWidth: 10px;
+$colMargin: -($colBorderWidth / 2);
+
 .column {
-  border: 5px solid var(--imColBlack30);
+  border: $colBorderWidth solid var(--imColBlack30);
   box-sizing: border-box;
   padding: 10px;
   display: flex;
   flex-direction: column;
   min-height: 118px;
+  margin: $colMargin;
+  transition: border-color 150ms ease-in-out;
+
+  &.active {
+    border-color: var(--imColBlack60);
+    z-index: 1;
+  }
 }
 
 .column1,

@@ -5,10 +5,10 @@
   padding: 5px;
   overflow: hidden;
   transition:
-    opacity var(--imPageBuilderTransitionDuration) ease,
-    height var(--imPageBuilderTransitionDuration) ease,
-    margin var(--imPageBuilderTransitionDuration) ease,
-    padding var(--imPageBuilderTransitionDuration) ease;
+    opacity var(--fadeTransitionDuration) ease,
+    height var(--fadeTransitionDuration) ease,
+    margin var(--fadeTransitionDuration) ease,
+    padding var(--fadeTransitionDuration) ease;
 
   &:last-child {
     margin: 0;

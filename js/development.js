@@ -16,8 +16,12 @@ const column_selector_id_prefix = 'js-colSelector';
 const column_two_id = 2;
 const column_three_id = 3;
 
-// Fetch fade transition duration from CSS variable, default to 300ms
-const fadeTransitionDuration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fadeTransitionDuration'), 10) || 300;
+// Fetches the configured fade transition duration from the root CSS variable, defaulting to 500ms if not set.
+function get_fade_transition_duration() {
+  const root = document.documentElement;
+  const value = getComputedStyle(root).getPropertyValue('--fadeTransitionDuration').trim();
+  return value ? parseInt(value.replace('ms', ''), 10) : 500;
+}
 
 // Single source of truth for all available components
 const components = [
@@ -70,7 +74,7 @@ function render_component_buttons(active_tab = 1) {
         setTimeout(() => {
           button.classList.remove('fading-out');
           button.classList.add('inactive');
-        }, fadeTransitionDuration);
+        }, get_fade_transition_duration());
       };
       main_tabs_panel.appendChild(button);
     });
@@ -98,6 +102,18 @@ tab_buttons.forEach(tab => {
     tab_buttons.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     render_component_buttons(parseInt(tab.dataset.tab, 10));
+
+    // Remove .active from all columns
+    [column_one, column_two, column_three, column_four].forEach(col => col.classList.remove('active'));
+    // Add .active to correct columns
+    if (tab.id === 'js-componentsTab1') {
+      column_one.classList.add('active');
+    } else if (tab.id === 'js-componentsTab2') {
+      column_two.classList.add('active');
+      column_three.classList.add('active');
+    } else if (tab.id === 'js-componentsTab3') {
+      column_four.classList.add('active');
+    }
   };
 });
 
@@ -223,7 +239,7 @@ function attach_component_events() {
         // Re-index positions
         active_in_column.forEach((c, i) => { c.position = i; });
         render_component_items();
-      }, fadeTransitionDuration);
+      }, get_fade_transition_duration());
     };
   });
 }
@@ -247,4 +263,70 @@ window.addEventListener('componentOrderChanged', event => {
 // Initialise the UI on load
 render_component_buttons();
 render_component_items();
+
+/**
+ * Sets the active tab and highlights the corresponding column(s) based on the clicked column.
+ * @param {HTMLElement} clickedColumn - The column that was clicked.
+ */
+function setActiveTabAndColumn(clickedColumn) {
+  // Tabs
+  const tab1 = document.getElementById('js-componentsTab1');
+  const tab2 = document.getElementById('js-componentsTab2');
+  const tab3 = document.getElementById('js-componentsTab3');
+  // Columns
+  const col1 = document.getElementById('js-column1');
+  const col2 = document.getElementById('js-column2');
+  const col3 = document.getElementById('js-column3');
+  const col4 = document.getElementById('js-column4');
+
+  // Remove all .active
+  [tab1, tab2, tab3, col1, col2, col3, col4].forEach(el => el.classList.remove('active'));
+
+  if (clickedColumn === col1) {
+    tab1.classList.add('active');
+    col1.classList.add('active');
+  } else if (clickedColumn === col2 || clickedColumn === col3) {
+    tab2.classList.add('active');
+    col2.classList.add('active');
+    col3.classList.add('active');
+  } else if (clickedColumn === col4) {
+    tab3.classList.add('active');
+    col4.classList.add('active');
+  }
+}
+
+// Helper to check if an element is a column or child of a column
+function getColumnFromEvent(e) {
+  let el = e.target;
+  while (el && el !== document.body) {
+    if (el.id === 'js-column1') return document.getElementById('js-column1');
+    if (el.id === 'js-column2') return document.getElementById('js-column2');
+    if (el.id === 'js-column3') return document.getElementById('js-column3');
+    if (el.id === 'js-column4') return document.getElementById('js-column4');
+    el = el.parentElement;
+  }
+  return null;
+}
+
+// Attach listeners to columns
+['js-column1','js-column2','js-column3','js-column4'].forEach(colId => {
+  const col = document.getElementById(colId);
+  if (col) {
+    col.addEventListener('click', function(e) {
+      const clickedCol = getColumnFromEvent(e);
+      if (clickedCol) {
+        setActiveTabAndColumn(clickedCol);
+
+        // Toggle button visibility based on active tab
+        if (clickedCol.id === 'js-column1') {
+          render_component_buttons(1);
+        } else if (clickedCol.id === 'js-column2' || clickedCol.id === 'js-column3') {
+          render_component_buttons(2);
+        } else if (clickedCol.id === 'js-column4') {
+          render_component_buttons(3);
+        }
+      }
+    });
+  }
+});
 
