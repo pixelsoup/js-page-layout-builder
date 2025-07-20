@@ -1515,6 +1515,18 @@ function updatePositions(column) {
       draggable: '.componentItemWrapper',
       onEnd: function (evt) {
         updatePositions(col);
+        // After sorting, dispatch a custom event with the new order for this column
+        const order = Array.from(col.children).map(child => {
+          return parseInt(child.id.replace('js-component', ''), 10);
+        });
+        const columnNumber = colId === 'js-column1' ? 1 : colId === 'js-column2' ? 2 : colId === 'js-column3' ? 3 : 4;
+        const event = new CustomEvent('componentOrderChanged', {
+          detail: {
+            column: columnNumber,
+            order: order
+          }
+        });
+        window.dispatchEvent(event);
       }
     });
   }

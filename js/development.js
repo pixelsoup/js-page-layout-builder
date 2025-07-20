@@ -107,25 +107,46 @@ function renderComponentItems() {
   column_three.innerHTML = '';
   column_four.innerHTML = '';
 
-  components.forEach(component => {
-    if (!component.active) return;
+  // Helper: get active components by column, sorted by position
+  function getSortedActiveComponents(colNum) {
+    return components.filter(c => c.active && c.column === colNum)
+      .sort((a, b) => (a.position !== undefined ? a.position : 0) - (b.position !== undefined ? b.position : 0));
+  }
+
+  // Render row 1 (column 1)
+  getSortedActiveComponents(1).forEach((component, idx) => {
+    component.position = idx;
     const component_item = document.createElement('div');
     component_item.id = `${component_item_id_prefix}${component.id}`;
     component_item.className = component_item_wrapper_class;
-    component_item.dataset.position = component.column;
+    component_item.dataset.position = component.position;
     component_item.dataset.name = component.componentName;
+    component_item.innerHTML = `
+      <div class="componentItemHeaderName">
+        <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
+        ${component.name}
+      </div>
+      <div class="componentItemTriggersWrapper">
+        <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>
+      </div>
+    `;
+    column_one.appendChild(component_item);
+  });
 
-    // Only show column selector for row 2 components
-    let selectorHTML = '';
-    if (component.row === 2) {
-      selectorHTML = `
-        <select id="${column_selector_id_prefix}${component.id}" class="componentColumnSelector">
-          <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>Column 1</option>
-          <option value="column3" ${component.column === column_3_value ? 'selected' : ''}>Column 2</option>
-        </select>
-      `;
-    }
-
+  // Render row 2 (column 2 and 3)
+  getSortedActiveComponents(column_2_value).forEach((component, idx) => {
+    component.position = idx;
+    const component_item = document.createElement('div');
+    component_item.id = `${component_item_id_prefix}${component.id}`;
+    component_item.className = component_item_wrapper_class;
+    component_item.dataset.position = component.position;
+    component_item.dataset.name = component.componentName;
+    let selectorHTML = `
+      <select id="${column_selector_id_prefix}${component.id}" class="componentColumnSelector">
+        <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>Column 1</option>
+        <option value="column3" ${component.column === column_3_value ? 'selected' : ''}>Column 2</option>
+      </select>
+    `;
     component_item.innerHTML = `
       <div class="componentItemHeaderName">
         <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
@@ -136,13 +157,52 @@ function renderComponentItems() {
         <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>
       </div>
     `;
+    column_two.appendChild(component_item);
+  });
+  getSortedActiveComponents(column_3_value).forEach((component, idx) => {
+    component.position = idx;
+    const component_item = document.createElement('div');
+    component_item.id = `${component_item_id_prefix}${component.id}`;
+    component_item.className = component_item_wrapper_class;
+    component_item.dataset.position = component.position;
+    component_item.dataset.name = component.componentName;
+    let selectorHTML = `
+      <select id="${column_selector_id_prefix}${component.id}" class="componentColumnSelector">
+        <option value="column2" ${component.column === column_2_value ? 'selected' : ''}>Column 1</option>
+        <option value="column3" ${component.column === column_3_value ? 'selected' : ''}>Column 2</option>
+      </select>
+    `;
+    component_item.innerHTML = `
+      <div class="componentItemHeaderName">
+        <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
+        ${component.name}
+      </div>
+      <div class="componentItemTriggersWrapper">
+        ${selectorHTML}
+        <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>
+      </div>
+    `;
+    column_three.appendChild(component_item);
+  });
 
-    // Append to correct column
-    if (component.row === 1) column_one.appendChild(component_item);
-    else if (component.row === 2) {
-      const target_column = component.column === column_2_value ? column_two : column_three;
-      target_column.appendChild(component_item);
-    } else if (component.row === 3) column_four.appendChild(component_item);
+  // Render row 3 (column 4)
+  getSortedActiveComponents(4).forEach((component, idx) => {
+    component.position = idx;
+    const component_item = document.createElement('div');
+    component_item.id = `${component_item_id_prefix}${component.id}`;
+    component_item.className = component_item_wrapper_class;
+    component_item.dataset.position = component.position;
+    component_item.dataset.name = component.componentName;
+    component_item.innerHTML = `
+      <div class="componentItemHeaderName">
+        <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
+        ${component.name}
+      </div>
+      <div class="componentItemTriggersWrapper">
+        <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>
+      </div>
+    `;
+    column_four.appendChild(component_item);
   });
 
   updateButtonStates();
@@ -197,14 +257,35 @@ function attachComponentEvents() {
         component_element.classList.add('fading-out');
       }
 
-      // After the animation, mark component inactive and re-render
+      // After the animation, mark component inactive, shift positions, and re-render
       setTimeout(() => {
-        component.active = false;
-        renderComponentItems();
-      }, getFadeTransitionDuration());
+            component.active = false;
+            const colComps = components.filter(c => c.active && c.column === component.column);
+            colComps.sort((a, b) => a.position - b.position); // Preserve current order
+            colComps.forEach((c, idx) => c.position = idx); // Re-index positions
+            renderComponentItems();
+        }, getFadeTransitionDuration());
     };
   });
 }
+
+
+// Listen for SortableJS order change events and update the data model
+window.addEventListener('componentOrderChanged', function(e) {
+  const { column, order } = e.detail;
+  // Only update active components in this column
+  let colComps = components.filter(c => c.active && c.column === column);
+  // Map order array to component objects
+  order.forEach((id, idx) => {
+    let comp = colComps.find(c => c.id === id);
+    if (comp) comp.position = idx;
+  });
+  // Defensive: re-index any missing positions
+  colComps.forEach((c, idx) => {
+    if (typeof c.position !== 'number') c.position = idx;
+  });
+  renderComponentItems();
+});
 
 // Initialize the UI by rendering all components
 renderComponentButtons();
