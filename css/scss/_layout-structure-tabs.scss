@@ -10,14 +10,14 @@
   padding: 10px;
   text-align: center;
   color: var(--imColWhite);
-  background-color: var(--imColBlack40);
+  background-color: var(--imColBlack25);
   border-radius: 0;
   border: 0;
   transition: background-color 150ms ease;
 
   &:hover {
     cursor: pointer;
-    background-color: var(--imColBlack50);
+    background-color: var(--imColBlack35);
   }
 
   &.active {

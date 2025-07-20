@@ -47,18 +47,20 @@
 }
 
 .column {
-  border: $colBorderWidth solid var(--imColBlack30);
+  border: $colBorderWidth solid var(--imColBlack20);
   box-sizing: border-box;
   padding: 10px;
   display: flex;
   flex-direction: column;
   min-height: 118px;
   margin: $colMargin;
-  transition: border-color 150ms ease-in-out;
+  opacity: 1;
+  transition: opacity 150ms ease-in-out, border-color 150ms ease-in-out;
 
   &.active {
-    border-color: var(--imColBlack60);
+    border-color: var(--imColBlack50);
     z-index: 1;
+    opacity: 1;
   }
 }
 
