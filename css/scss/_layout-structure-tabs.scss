@@ -1,0 +1,28 @@
+.componentTabs {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+
+}
+
+.componentTab {
+  cursor: pointer;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: var(--imColWhite);
+  border-radius: var(--imThemeBorderRadiusSm);
+  border: 1px solid var(--imColBlack20);
+  transition: background-color 150ms ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--imColBlack10);
+  }
+
+  &.active {
+    color: var(--imColWhite);
+    background-color: var(--imColBlack);
+    border-bottom: 2px solid var(--imColBlack30);
+  }
+}
