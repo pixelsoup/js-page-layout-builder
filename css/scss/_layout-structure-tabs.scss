@@ -1,8 +1,7 @@
 .componentsTabs {
   display: flex;
-  gap: 5px;
+  gap: 1px;
   width: 100%;
-
 }
 
 .componentsTab {
@@ -10,19 +9,27 @@
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: var(--imColWhite);
-  border-radius: var(--imThemeBorderRadiusSm);
-  border: 1px solid var(--imColBlack20);
+  color: var(--imColWhite);
+  background-color: var(--imColBlack40);
+  border-radius: 0;
+  border: 0;
   transition: background-color 150ms ease;
 
   &:hover {
     cursor: pointer;
-    background-color: var(--imColBlack10);
+    background-color: var(--imColBlack50);
   }
 
   &.active {
     color: var(--imColWhite);
     background-color: var(--imColBlack);
-    border-bottom: 2px solid var(--imColBlack30);
+  }
+
+  &[data-tab="1"] {
+    border-radius: 6px 0 0 6px;
+  }
+
+  &[data-tab="3"] {
+    border-radius: 0 6px 6px 0;
   }
 }

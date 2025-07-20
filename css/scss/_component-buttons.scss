@@ -2,7 +2,7 @@
 
 .componentBtn {
   cursor: pointer;
-  background-color: var(--imColSecondary);
+  background-color: var(--imColBlack40);
 
   &.inactive,
   &.hidden {
@@ -48,7 +48,6 @@
   transition: fill 150ms ease-in-out, transform 150ms ease-in-out;
 
   &:hover {
-    // background-color: var(--imColSecondary);
     transform: scale(1.15);
   }
 }
@@ -56,13 +55,13 @@
 .componentItemTriggersWrapper {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .icon-trigger {
   font-size: 20px;
   color: var(--imColWhite);
-  background-color: var(--imColBlack);
+  background-color: var(--imColBlack60);
   border-radius: 80px;
   cursor: pointer;
   width: 30px;
@@ -79,6 +78,7 @@
 }
 
 .btn-info-wrapper {
+  padding: 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
