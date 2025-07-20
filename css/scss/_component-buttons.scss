@@ -2,7 +2,7 @@
 
 .componentBtn {
   cursor: pointer;
-  background-color: var(--imColBlack40);
+  background-color: var(--imColSecondary);
 
   &.inactive,
   &.hidden {
@@ -10,8 +10,27 @@
   }
 }
 
+.componentBtn.fading-out,
+.componentItemWrapper.fading-out{
+  @include propertiesTransitionEnd;
+}
+
+.componentBtn,
 .componentItemWrapper {
-  background-color: var(--imColSecondary);
+  font-size: 14px;
+  @include propertiesTransitionable;
+  color: var(--imColWhite);
+  border: 0;
+  border-radius: var(--imThemeBorderRadiusSm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+}
+
+.componentItemWrapper {
+  background-color: var(--imColBlack40);
 }
 
 .componentItemHeaderName {
@@ -29,32 +48,9 @@
   transition: fill 150ms ease-in-out, transform 150ms ease-in-out;
 
   &:hover {
-    background-color: var(--imColSecondary);
+    // background-color: var(--imColSecondary);
     transform: scale(1.15);
   }
-}
-
-.componentBtn,
-.componentItemWrapper {
-  font-size: 14px;
-  @include propertiesTransitionable;
-}
-
-.componentBtn.fading-out,
-.componentItemWrapper.fading-out{
-  @include propertiesTransitionEnd;
-}
-
-.componentBtn,
-.componentItemWrapper {
-  color: var(--imColWhite);
-  border: 0;
-  border-radius: var(--imThemeBorderRadiusSm);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-  width: 100%;
 }
 
 .componentItemTriggersWrapper {
@@ -76,14 +72,10 @@
   justify-content: center;
   transition: background-color 150ms ease-in-out, transform 150ms ease-in-out;
 
+  &:hover,
   .componentBtn:hover & {
-    background-color: var( --imColSecondary);
-    transform: scale(1.15);
+    transform: scale(1.1);
   }
-}
-
-.icon-delete:hover {
-  transform: scale(1.15);
 }
 
 .btn-info-wrapper {
@@ -96,12 +88,17 @@
   transition: transform 150ms ease-in-out;
 
   &:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
   }
 }
 
 .icon-info {
-  background-color: var(--imColBlack);
+  background-color: var(--imColBlack60);
+  fill: var(--imColWhite);
+}
+
+.icon-delete {
+  background-color: var(--imColBlack60);
   fill: var(--imColWhite);
 }
 

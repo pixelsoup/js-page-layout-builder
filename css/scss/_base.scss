@@ -17,7 +17,7 @@
 * {
   scrollbar-color: transparent transparent;
   /* thumb and track color */
-  scrollbar-width: 0px;
+  scrollbar-width: 0;
 }
 
 *::-webkit-scrollbar {
@@ -50,6 +50,7 @@ body {
   color: var(--imColBlack);
   background-color: var(--imColWhite);
   height: 100%;
+  margin: 0;
 }
 
 strong {
@@ -69,6 +70,11 @@ li {
   padding: 0;
 }
 
+.main,
+.container  {
+  height: 100%;
+}
+
 .container {
   max-width: 1600px;
   margin-inline: auto;
@@ -85,12 +91,16 @@ li {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  p {
+    margin: 0;
+  }
 }
 
 .imRadioLabel {
   font-size: 14px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 2px;
   cursor: pointer;
 }

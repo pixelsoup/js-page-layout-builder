@@ -262,12 +262,35 @@ function toggleComponentInformation(componentId) {
   }
 }
 
+// Toggles the visibility of the component info drawer
+function toggleComponentInfoDrawer(isOpen) {
+  const infoDrawer = document.getElementById('js-componentInfoDrawer');
+  const layoutWrapper = document.querySelector('.layoutBuilderWrapper');
+
+  if (isOpen) {
+    infoDrawer.classList.remove('hidden');
+    layoutWrapper.classList.add('drawer-open');
+  } else {
+    infoDrawer.classList.add('hidden');
+    layoutWrapper.classList.remove('drawer-open');
+  }
+}
+
 // Dynamically attach event listener to info button for all components
 function attachInfoButtonEvent(componentId) {
   const infoButton = document.getElementById(`js-component-btn-info${componentId}`);
   if (infoButton) {
-    infoButton.onclick = () => toggleComponentInformation(componentId);
+    infoButton.onclick = () => {
+      toggleComponentInfoDrawer(true);
+      toggleComponentInformation(componentId);
+    };
   }
+}
+
+// Attach event listener to close button
+const closeDrawerBtn = document.getElementById('js-closeComponentInfoDrawer');
+if (closeDrawerBtn) {
+  closeDrawerBtn.onclick = () => toggleComponentInfoDrawer(false);
 }
 
 // Listen for custom event from SortableJS, update component order
