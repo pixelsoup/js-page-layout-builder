@@ -34,5 +34,6 @@
   --imThemeBorderRadiusSm: 4px;
   --imThemeBorderRadiusMd: 6px;
   --imThemeBorderRadiusLg: 10px;
-  --imPageBuilderTransitionDuration: 300ms;
+  --fadeTransitionDuration: 300;
+  --imPageBuilderTransitionDuration: var(--fadeTransitionDuration)ms;
 }

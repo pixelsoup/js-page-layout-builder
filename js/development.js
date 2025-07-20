@@ -16,12 +16,8 @@ const column_selector_id_prefix = 'js-colSelector';
 const column_two_id = 2;
 const column_three_id = 3;
 
-// Fetches the configured fade transition duration from the root CSS variable, defaulting to 500ms if not set.
-function get_fade_transition_duration() {
-  const root = document.documentElement;
-  const value = getComputedStyle(root).getPropertyValue('--imPageBuilderTransitionDuration').trim();
-  return value ? parseInt(value, 10) : 500;
-}
+// Fetch fade transition duration from CSS variable, default to 300ms
+const fadeTransitionDuration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fadeTransitionDuration'), 10) || 300;
 
 // Single source of truth for all available components
 const components = [
@@ -74,7 +70,7 @@ function render_component_buttons(active_tab = 1) {
         setTimeout(() => {
           button.classList.remove('fading-out');
           button.classList.add('inactive');
-        }, get_fade_transition_duration());
+        }, fadeTransitionDuration);
       };
       main_tabs_panel.appendChild(button);
     });
@@ -227,7 +223,7 @@ function attach_component_events() {
         // Re-index positions
         active_in_column.forEach((c, i) => { c.position = i; });
         render_component_items();
-      }, get_fade_transition_duration());
+      }, fadeTransitionDuration);
     };
   });
 }
