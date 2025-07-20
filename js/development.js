@@ -4,7 +4,7 @@ const column_one = document.querySelector('#js-column1');
 const column_two = document.querySelector('#js-column2');
 const column_three = document.querySelector('#js-column3');
 const column_four = document.querySelector('#js-column4');
-const tab_buttons = document.querySelectorAll('.componentTab');
+const tab_buttons = document.querySelectorAll('.componentsTab');
 
 // Prefixes and class names for DOM structure and styling
 const component_add_button_id_prefix = 'js-componentBtn';
@@ -102,7 +102,7 @@ tab_buttons.forEach(tab => {
 });
 
 // Initial render
-document.querySelector('.componentTab[data-tab="1"]').classList.add('active');
+document.querySelector('.componentsTab[data-tab="1"]').classList.add('active');
 render_component_buttons(1);
 
 /**
