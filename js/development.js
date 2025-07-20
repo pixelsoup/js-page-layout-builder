@@ -169,6 +169,7 @@ function render_component_items() {
           ${component.name}
         </div>
         <div class="componentItemTriggersWrapper">
+          <button id="js-component-btn-info${component.id}" class="btn-info-wrapper"><svg class="icon-trigger icon-info"><use xlink:href="#svg-info-circle"></use></svg></button>
           ${column_selector}
           <span class="icon-trigger icon-delete" data-id="${component.id}">&ndash;</span>
         </div>

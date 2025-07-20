@@ -57,6 +57,12 @@
   width: 100%;
 }
 
+.componentItemTriggersWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .icon-trigger {
   font-size: 20px;
   color: var(--imColWhite);
@@ -78,5 +84,23 @@
 
 .icon-delete:hover {
   transform: scale(1.15);
+}
+
+.btn-info-wrapper {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 150ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.icon-info {
+  fill: var(--imColWhite);
 }
 
