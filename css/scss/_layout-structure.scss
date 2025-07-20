@@ -69,14 +69,44 @@
   grid-column: 1 / 3; // Span all columns
 }
 
+.closeDrawerBtn {
+  cursor: pointer;
+  color: var(--imColWhite);
+  border: 0;
+  background-color: var(--imColBlack);
+  padding: 5px 12px;
+  border-radius: var(--imThemeBorderRadiusSm);
+  transition: background-color 150ms ease-in-out;
+
+  &:hover {
+    background-color: var(--imColSecondary);
+  }
+}
+
 .componentInfoHeading {
   font-size: 16px;
   margin-block-end: 0;
 }
 
 .componentInfo {
+  width: 100%;
 
   &.hidden {
     display: none;
+  }
+}
+
+.componentInfoTextWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--imColWhite);
+  border-radius: var(--imThemeBorderRadiusSm);
+  border: 1px solid var(--imColBlack20);
+
+
+  p {
+    margin: 0;
   }
 }

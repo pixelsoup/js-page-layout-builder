@@ -10,19 +10,19 @@
   padding: 10px;
   text-align: center;
   color: var(--imColWhite);
-  background-color: var(--imColBlack25);
+  background-color: var(--imColBlack30);
   border-radius: 0;
   border: 0;
   transition: background-color 150ms ease;
 
   &:hover {
     cursor: pointer;
-    background-color: var(--imColBlack35);
+    background-color: var(--imColBlack40);
   }
 
   &.active {
     color: var(--imColWhite);
-    background-color: var(--imColBlack);
+    background-color: var(--imColSecondary);
   }
 
   &[data-tab="1"] {

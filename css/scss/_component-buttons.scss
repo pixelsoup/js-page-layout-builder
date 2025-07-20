@@ -74,7 +74,12 @@
   &:hover,
   .componentBtn:hover & {
     transform: scale(1.1);
+    background-color: var(--imColSecondary);
   }
+}
+
+.componentColumnSelector {
+  padding: 3px 8px;
 }
 
 .btn-info-wrapper {
@@ -89,16 +94,25 @@
 
   &:hover {
     transform: scale(1.1);
+
+    .icon-info {
+      background-color: var(--imColSecondary);
+    }
   }
 }
 
 .icon-info {
   background-color: var(--imColBlack60);
   fill: var(--imColWhite);
+
 }
 
 .icon-delete {
   background-color: var(--imColBlack60);
   fill: var(--imColWhite);
+
+  &:hover {
+    background-color: var(--imColSecondary);
+  }
 }
 
