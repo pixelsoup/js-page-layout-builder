@@ -5,7 +5,12 @@ const component_button_id_prefix = 'js-componentBtn';
 const component_item_id_prefix = 'js-component';
 const component_item_wrapper_class = 'componentItemWrapper';
 const column_selector_id_prefix = 'js-colSelector';
-const fade_transition_duration = 500; // ms
+// Function to get the fade transition duration from CSS variables
+function getFadeTransitionDuration() {
+  const root = document.documentElement;
+  const value = getComputedStyle(root).getPropertyValue('--imPageBuilderTransitionDuration').trim();
+  return value ? parseInt(value, 10) : 500;
+}
 
 
 // Component data array
@@ -53,7 +58,7 @@ if (!tabPanels.dataset.initialized) {
             setTimeout(() => {
                 button.classList.remove('fading-out');
                 button.classList.add('inactive');
-            }, fade_transition_duration);
+            }, getFadeTransitionDuration);
         };
         tabPanels.appendChild(button);
     });
@@ -196,7 +201,7 @@ function attachComponentEvents() {
       setTimeout(() => {
         component.active = false;
         renderComponentItems();
-      }, fade_transition_duration);
+      }, getFadeTransitionDuration());
     };
   });
 }
