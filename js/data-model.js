@@ -201,12 +201,20 @@ export function updateInstanceVisibility(instanceId, visibilityValue) {
  * @param {Array<string>} order - Array of instance IDs in new order
  */
 export function updateComponentOrder(column, order) {
+  console.log(`  → updateComponentOrder: column ${column}, order:`, order);
+  
   order.forEach((instanceId, position) => {
     const inst = componentInstances.find(i => i.instanceId === instanceId);
     if (inst) {
+      const oldColumn = inst.column;
       inst.column = column;
       inst.position = position;
+      console.log(`    ✓ Updated ${instanceId}: column ${oldColumn} → ${column}, position ${position}`);
+    } else {
+      console.warn(`    ✗ Instance ${instanceId} not found in data model!`);
     }
   });
+  
   saveToStorage(componentInstances);
+  console.log('  → Saved to storage. Current state:', componentInstances.map(i => ({ id: i.instanceId, col: i.column, pos: i.position })));
 }

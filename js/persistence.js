@@ -19,7 +19,9 @@ export function saveToStorage(instances) {
 export function loadFromStorage() {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    const instances = data ? JSON.parse(data) : [];
+    console.log('📥 Loaded from storage:', instances.map(i => ({ id: i.instanceId, col: i.column, pos: i.position })));
+    return instances;
   } catch (e) {
     console.error('Failed to load from localStorage:', e);
     return [];

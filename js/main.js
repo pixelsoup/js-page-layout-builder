@@ -45,17 +45,11 @@ function init() {
   render_component_buttons(1);
   render_component_items();
   
-  // Initialize Sortable.js after rendering (important for drag-and-drop to work)
-  // Use setTimeout to ensure DOM is fully ready
+  // Sortable is automatically initialized by render_component_items()
+  // Debug info after initialization
   setTimeout(() => {
-    console.log('Initializing Sortable instances...');
-    initializeSortable();
-    
-    // Debug info after initialization
-    setTimeout(() => {
-      debugSortableStatus();
-    }, 100);
-  }, 50);
+    debugSortableStatus();
+  }, 150);
   
   // Log configuration on load for testing
   console.log('Page builder loaded. Use exportConfiguration() or copyConfigToClipboard() to export configuration.');

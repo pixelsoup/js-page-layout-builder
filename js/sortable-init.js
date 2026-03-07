@@ -19,6 +19,13 @@ export function initializeSortable() {
     });
   }
 
+  // Shared group configuration for Row 2 columns
+  const row2GroupConfig = {
+    name: 'row2-columns',
+    put: true,
+    pull: true
+  };
+
   // Create Sortable instances for each column
   ['js-column1', 'js-column2', 'js-column3', 'js-column4'].forEach(colId => {
     const col = document.getElementById(colId);
@@ -52,14 +59,17 @@ export function initializeSortable() {
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
       dragClass: 'sortable-drag',
-      filter: '.emptyState',
+      emptyInsertThreshold: 100,  // Allow drops in empty columns (100px detection area)
+      fallbackOnBody: true,
+      swapThreshold: 0.65,
       sort: true,
       onStart: function(evt) {
         console.log('🎯 Drag started on', colId, '- Item:', evt.item.dataset.id);
         
-        // Hide all empty states during drag to allow drops anywhere
+        // Remove all empty states during drag to allow drops anywhere
         document.querySelectorAll('.emptyState').forEach(es => {
-          es.style.display = 'none';
+          es.dataset.parentId = es.parentElement.id;  // Store parent for restoration
+          es.remove();
         });
         
         // Add dragging class to all columns in the same group
@@ -74,14 +84,36 @@ export function initializeSortable() {
         if (evt.from.id !== evt.to.id) {
           console.log('  → Attempting move from', evt.from.id, 'to', evt.to.id);
         }
-        // Don't interfere, return default behavior
+        // Explicitly allow the move
+        return true;
       },
       onEnd: function (evt) {
-        console.log('🎯 Drag ended. From:', evt.from.id, 'To:', evt.to.id, '- Moved:', evt.from.id !== evt.to.id);
+        const sourceCol = evt.from;
+        const destinationCol = evt.item.parentElement;  // Use actual parent, not evt.to
+        const isCrossColumnMove = sourceCol.id !== destinationCol.id;
         
-        // Show empty states again
-        document.querySelectorAll('.emptyState').forEach(es => {
-          es.style.display = '';
+        console.log('🎯 Drag ended. From:', sourceCol.id, 'To:', destinationCol.id, '- Cross-column:', isCrossColumnMove);
+        
+        // Restore empty states only for columns that have no components
+        document.querySelectorAll('.column').forEach(colEl => {
+          const componentItems = colEl.querySelectorAll('.componentItemWrapper');
+          const hasEmptyState = colEl.querySelector('.emptyState');
+          
+          if (componentItems.length === 0 && !hasEmptyState) {
+            // Column is empty and needs an empty state
+            const emptyState = document.createElement('div');
+            emptyState.className = 'emptyState';
+            emptyState.innerHTML = `
+              <svg class="emptyState__icon" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+              <p class="emptyState__text">Drop components here</p>
+            `;
+            colEl.appendChild(emptyState);
+          } else if (componentItems.length > 0 && hasEmptyState) {
+            // Column has items, remove empty state if it exists
+            hasEmptyState.remove();
+          }
         });
         
         // Remove dragging class
@@ -89,38 +121,63 @@ export function initializeSortable() {
           c.classList.remove('sortable-drag-active');
         });
         
-        // Use evt.to (destination column) not col (source column)
-        const destinationCol = evt.to;
+        // Update positions for destination column
         updatePositions(destinationCol);
         
-        // Get the destination column number
+        // Get the destination column number and order
         const destColId = destinationCol.id;
         const destColumnNumber = destColId === 'js-column1' ? 1 : 
                                   destColId === 'js-column2' ? 2 : 
                                   destColId === 'js-column3' ? 3 : 4;
         
-        // Get the new order using data-id (instanceId)
-        const order = Array.from(destinationCol.children)
+        const destOrder = Array.from(destinationCol.children)
           .filter(child => child.classList.contains('componentItemWrapper'))
           .map(child => child.dataset.id);
         
-        console.log('New order in column', destColumnNumber, ':', order);
+        console.log('New order in column', destColumnNumber, ':', destOrder);
         
-        // Dispatch custom event with the new order for the destination column
-        const event = new CustomEvent('componentOrderChanged', {
-          detail: {
-            column: destColumnNumber,
-            order: order
-          }
-        });
-        window.dispatchEvent(event);
+        // For cross-column moves, we need to update both columns at once
+        if (isCrossColumnMove) {
+          updatePositions(sourceCol);
+          
+          const sourceColId = sourceCol.id;
+          const sourceColumnNumber = sourceColId === 'js-column1' ? 1 : 
+                                      sourceColId === 'js-column2' ? 2 : 
+                                      sourceColId === 'js-column3' ? 3 : 4;
+          
+          const sourceOrder = Array.from(sourceCol.children)
+            .filter(child => child.classList.contains('componentItemWrapper'))
+            .map(child => child.dataset.id);
+          
+          console.log('Source column', sourceColumnNumber, 'new order:', sourceOrder);
+          
+          // Dispatch a single event with both columns' data
+          window.dispatchEvent(new CustomEvent('componentOrderChanged', {
+            detail: {
+              isCrossColumnMove: true,
+              sourceColumn: sourceColumnNumber,
+              sourceOrder: sourceOrder,
+              destColumn: destColumnNumber,
+              destOrder: destOrder
+            }
+          }));
+        } else {
+          // Same-column reorder
+          window.dispatchEvent(new CustomEvent('componentOrderChanged', {
+            detail: {
+              isCrossColumnMove: false,
+              column: destColumnNumber,
+              order: destOrder
+            }
+          }));
+        }
       }
     };
     
     // Add group option if this is a Row 2 column
     if (isRow2Column) {
-      sortableConfig.group = 'row2-columns';
-      console.log('  ✓ Added group for cross-column dragging');
+      sortableConfig.group = row2GroupConfig;
+      console.log('  ✓ Added group for cross-column dragging:', sortableConfig.group);
     }
     
     const sortableInstance = Sortable.create(col, sortableConfig);
