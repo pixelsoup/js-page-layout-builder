@@ -179,12 +179,14 @@ export function render_component_items() {
             <svg class="icon-trigger icon-info"><use xlink:href="#svg-info-circle"></use></svg>
           </button>
           ${visibility_selector}
-          <button id="js-component-btn-duplicate-${instance.instanceId}" class="btn-duplicate-wrapper" title="Duplicate component">
-            <svg class="icon-trigger icon-duplicate" viewBox="0 0 24 24">
-              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-            </svg>
-          </button>
-          <button class="btn-delete-wrapper icon-trigger icon-delete" data-instance-id="${instance.instanceId}" title="Delete component">&ndash;</button>
+          <div class="componentActionBtns">
+            <button id="js-component-btn-duplicate-${instance.instanceId}" class="btn-duplicate-wrapper" title="Duplicate component">
+              <svg class="icon-trigger icon-duplicate" viewBox="0 0 24 24">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+              </svg>
+            </button>
+            <button class="btn-delete-wrapper icon-trigger icon-delete" data-instance-id="${instance.instanceId}" title="Delete component">&ndash;</button>
+          </div>
         </div>
       `;
       elements_container.appendChild(component_element);
