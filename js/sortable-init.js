@@ -38,14 +38,13 @@ export function initializeSortable() {
     const columnNumber = colId === 'js-column1' ? 1 : colId === 'js-column2' ? 2 : colId === 'js-column3' ? 3 : 4;
     
     // Enable drag-between-columns for Row 2 (columns 2 and 3)
-    const groupOption = (colId === 'js-column2' || colId === 'js-column3') ? 'row2-columns' : false;
+    const isRow2Column = (colId === 'js-column2' || colId === 'js-column3');
     
-    console.log(`Initializing Sortable for ${colId} with group:`, groupOption);
+    console.log(`Initializing Sortable for ${colId}, isRow2Column:`, isRow2Column);
     console.log('  - Has componentItemWrapper elements:', col.querySelectorAll('.componentItemWrapper').length);
     console.log('  - Has componentItemHeaderName handles:', col.querySelectorAll('.componentItemHeaderName').length);
     
-    const sortableInstance = Sortable.create(col, {
-      group: groupOption,
+    const sortableConfig = {
       animation: 150,
       handle: '.componentItemHeaderName',
       draggable: '.componentItemWrapper',
@@ -54,17 +53,37 @@ export function initializeSortable() {
       chosenClass: 'sortable-chosen',
       dragClass: 'sortable-drag',
       filter: '.emptyState',
+      sort: true,
       onStart: function(evt) {
-        console.log('🎯 Drag started on', colId);
+        console.log('🎯 Drag started on', colId, '- Item:', evt.item.dataset.id);
+        
+        // Hide all empty states during drag to allow drops anywhere
+        document.querySelectorAll('.emptyState').forEach(es => {
+          es.style.display = 'none';
+        });
+        
         // Add dragging class to all columns in the same group
-        if (groupOption) {
+        if (isRow2Column) {
           document.querySelectorAll('#js-column2, #js-column3').forEach(c => {
             c.classList.add('sortable-drag-active');
           });
         }
       },
+      onMove: function(evt) {
+        // Log attempted cross-column moves
+        if (evt.from.id !== evt.to.id) {
+          console.log('  → Attempting move from', evt.from.id, 'to', evt.to.id);
+        }
+        // Don't interfere, return default behavior
+      },
       onEnd: function (evt) {
-        console.log('🎯 Drag ended. From:', evt.from.id, 'To:', evt.to.id);
+        console.log('🎯 Drag ended. From:', evt.from.id, 'To:', evt.to.id, '- Moved:', evt.from.id !== evt.to.id);
+        
+        // Show empty states again
+        document.querySelectorAll('.emptyState').forEach(es => {
+          es.style.display = '';
+        });
+        
         // Remove dragging class
         document.querySelectorAll('.sortable-drag-active').forEach(c => {
           c.classList.remove('sortable-drag-active');
@@ -96,7 +115,15 @@ export function initializeSortable() {
         });
         window.dispatchEvent(event);
       }
-    });
+    };
+    
+    // Add group option if this is a Row 2 column
+    if (isRow2Column) {
+      sortableConfig.group = 'row2-columns';
+      console.log('  ✓ Added group for cross-column dragging');
+    }
+    
+    const sortableInstance = Sortable.create(col, sortableConfig);
     
     // Store the instance
     if (sortableInstance) {
