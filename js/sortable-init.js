@@ -11,7 +11,7 @@ export function initializeSortable() {
     console.error('Sortable.js is not loaded yet');
     return;
   }
-  
+
   // Update positions helper
   function updatePositions(column) {
     Array.from(column.children).forEach((child, idx) => {
@@ -33,7 +33,7 @@ export function initializeSortable() {
       console.warn(`Column ${colId} not found`);
       return;
     }
-    
+
     // Destroy existing instance if it exists
     if (sortableInstances.has(colId)) {
       try {
@@ -43,14 +43,14 @@ export function initializeSortable() {
       }
     }
     const columnNumber = colId === 'js-column1' ? 1 : colId === 'js-column2' ? 2 : colId === 'js-column3' ? 3 : 4;
-    
+
     // Enable drag-between-columns for Row 2 (columns 2 and 3)
     const isRow2Column = (colId === 'js-column2' || colId === 'js-column3');
-    
+
     console.log(`Initializing Sortable for ${colId}, isRow2Column:`, isRow2Column);
     console.log('  - Has componentItemWrapper elements:', col.querySelectorAll('.componentItemWrapper').length);
     console.log('  - Has componentItemHeaderName handles:', col.querySelectorAll('.componentItemHeaderName').length);
-    
+
     const sortableConfig = {
       animation: 150,
       handle: '.componentItemHeaderName',
@@ -65,13 +65,13 @@ export function initializeSortable() {
       sort: true,
       onStart: function(evt) {
         console.log('🎯 Drag started on', colId, '- Item:', evt.item.dataset.id);
-        
+
         // Remove all empty states during drag to allow drops anywhere
         document.querySelectorAll('.emptyState').forEach(es => {
           es.dataset.parentId = es.parentElement.id;  // Store parent for restoration
           es.remove();
         });
-        
+
         // Add dragging class to all columns in the same group
         if (isRow2Column) {
           document.querySelectorAll('#js-column2, #js-column3').forEach(c => {
@@ -91,14 +91,14 @@ export function initializeSortable() {
         const sourceCol = evt.from;
         const destinationCol = evt.item.parentElement;  // Use actual parent, not evt.to
         const isCrossColumnMove = sourceCol.id !== destinationCol.id;
-        
+
         console.log('🎯 Drag ended. From:', sourceCol.id, 'To:', destinationCol.id, '- Cross-column:', isCrossColumnMove);
-        
+
         // Restore empty states only for columns that have no components
         document.querySelectorAll('.column').forEach(colEl => {
           const componentItems = colEl.querySelectorAll('.componentItemWrapper');
           const hasEmptyState = colEl.querySelector('.emptyState');
-          
+
           if (componentItems.length === 0 && !hasEmptyState) {
             // Column is empty and needs an empty state
             const emptyState = document.createElement('div');
@@ -115,42 +115,42 @@ export function initializeSortable() {
             hasEmptyState.remove();
           }
         });
-        
+
         // Remove dragging class
         document.querySelectorAll('.sortable-drag-active').forEach(c => {
           c.classList.remove('sortable-drag-active');
         });
-        
+
         // Update positions for destination column
         updatePositions(destinationCol);
-        
+
         // Get the destination column number and order
         const destColId = destinationCol.id;
-        const destColumnNumber = destColId === 'js-column1' ? 1 : 
-                                  destColId === 'js-column2' ? 2 : 
+        const destColumnNumber = destColId === 'js-column1' ? 1 :
+                                  destColId === 'js-column2' ? 2 :
                                   destColId === 'js-column3' ? 3 : 4;
-        
+
         const destOrder = Array.from(destinationCol.children)
           .filter(child => child.classList.contains('componentItemWrapper'))
           .map(child => child.dataset.id);
-        
+
         console.log('New order in column', destColumnNumber, ':', destOrder);
-        
+
         // For cross-column moves, we need to update both columns at once
         if (isCrossColumnMove) {
           updatePositions(sourceCol);
-          
+
           const sourceColId = sourceCol.id;
-          const sourceColumnNumber = sourceColId === 'js-column1' ? 1 : 
-                                      sourceColId === 'js-column2' ? 2 : 
+          const sourceColumnNumber = sourceColId === 'js-column1' ? 1 :
+                                      sourceColId === 'js-column2' ? 2 :
                                       sourceColId === 'js-column3' ? 3 : 4;
-          
+
           const sourceOrder = Array.from(sourceCol.children)
             .filter(child => child.classList.contains('componentItemWrapper'))
             .map(child => child.dataset.id);
-          
+
           console.log('Source column', sourceColumnNumber, 'new order:', sourceOrder);
-          
+
           // Dispatch a single event with both columns' data
           window.dispatchEvent(new CustomEvent('componentOrderChanged', {
             detail: {
@@ -173,15 +173,15 @@ export function initializeSortable() {
         }
       }
     };
-    
+
     // Add group option if this is a Row 2 column
     if (isRow2Column) {
       sortableConfig.group = row2GroupConfig;
       console.log('  ✓ Added group for cross-column dragging:', sortableConfig.group);
     }
-    
+
     const sortableInstance = Sortable.create(col, sortableConfig);
-    
+
     // Store the instance
     if (sortableInstance) {
       sortableInstances.set(colId, sortableInstance);
@@ -190,6 +190,6 @@ export function initializeSortable() {
       console.error(`✗ Failed to create Sortable instance for ${colId}`);
     }
   });
-  
+
   console.log('Total Sortable instances:', sortableInstances.size);
 }
