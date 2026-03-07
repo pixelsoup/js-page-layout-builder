@@ -8,7 +8,6 @@ import {
   component_add_button_id_prefix,
   component_item_id_prefix,
   component_item_wrapper_class,
-  column_selector_id_prefix,
   visibility_selector_id_prefix,
   column_two_id,
   column_three_id
@@ -154,14 +153,6 @@ export function render_component_items() {
       component_element.dataset.position = instance.position;
       component_element.dataset.name = compType.componentName;
 
-      // Column 2 and 3 have a column selector; others do not
-      const column_selector = (column_id === column_two_id || column_id === column_three_id) ? `
-        <select id="${column_selector_id_prefix}-${instance.instanceId}" class="componentColumnSelector" title="Change column">
-          <option value="column2" ${instance.column === column_two_id ? 'selected' : ''}>Column 1</option>
-          <option value="column3" ${instance.column === column_three_id ? 'selected' : ''}>Column 2</option>
-        </select>
-      ` : '';
-
       // Visibility dropdown
       let visibilityValue = 'both';
       if (instance.hideOnMobile && !instance.hideOnDesktop) visibilityValue = 'desktop';
@@ -188,7 +179,6 @@ export function render_component_items() {
             <svg class="icon-trigger icon-info"><use xlink:href="#svg-info-circle"></use></svg>
           </button>
           ${visibility_selector}
-          ${column_selector}
           <button id="js-component-btn-duplicate-${instance.instanceId}" class="btn-duplicate-wrapper" title="Duplicate component">
             <svg class="icon-trigger icon-duplicate" viewBox="0 0 24 24">
               <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>

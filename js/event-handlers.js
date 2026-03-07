@@ -1,9 +1,6 @@
 import {
   component_item_id_prefix,
-  column_selector_id_prefix,
   visibility_selector_id_prefix,
-  column_two_id,
-  column_three_id,
   get_fade_transition_duration
 } from './config.js';
 
@@ -11,7 +8,6 @@ import {
   componentInstances,
   deleteComponentInstance,
   duplicateComponentInstance,
-  updateInstanceColumn,
   updateInstanceVisibility,
   reindexColumn
 } from './data-model.js';
@@ -19,22 +15,9 @@ import {
 import { render_component_items } from './rendering.js';
 
 /**
- * Attaches event handlers for column selector changes, visibility changes, and delete actions.
+ * Attaches event handlers for visibility changes and delete actions.
  */
 export function attach_component_events() {
-  // Column selector change handler
-  document.querySelectorAll('.componentColumnSelector').forEach(selector => {
-    selector.onchange = () => {
-      const instanceId = selector.id.replace(column_selector_id_prefix + '-', '');
-      const newColumn = selector.value === 'column2' ? column_two_id : column_three_id;
-      
-      if (updateInstanceColumn(instanceId, newColumn)) {
-        reindexColumn(newColumn);
-        render_component_items();
-      }
-    };
-  });
-
   // Visibility selector change handler
   document.querySelectorAll('.componentVisibilitySelector').forEach(selector => {
     selector.onchange = () => {
