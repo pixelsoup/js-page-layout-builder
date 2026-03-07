@@ -34,6 +34,25 @@ $colMargin: -($colBorderWidth / 2);
   --imColDarkModeNeutralBlue: #1e273b;
   --imColDarkModeNeutralRed: #2a2325; // more red
 
+  // Blue citrus family (dark to light)
+  --imColBlueDeep: #1e1c6b;
+  --imColBluePowder: #2499ff;
+  --imColBlueLight: #8fd3fa;
+  --imColBluePale: #b9e5ff;
+
+  // Lime citrus family (dark to light)
+  --imColLimeDeep: #42ab12;
+  --imColLimeGreen: #7dd019;
+  --imColLimeCitrus: #b2ff59;
+  --imColLimePale: #cffcaa;
+
+  // Gap scale
+  --imGapTiny: 4px;
+  --imGapSmall: 8px;
+  --imGapMedium: 12px;
+  --imGapLarge: 16px;
+  --imGapExtraLarge: 20px;
+
     // THEME RADIUS
   --imThemeBorderRadiusSm: 4px;
   --imThemeBorderRadiusMd: 6px;

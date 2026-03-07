@@ -2,8 +2,9 @@
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
+    <meta name="description" content="Stock Details Page Builder - Navigate CMS">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock Details Page Builder - Navigate CMS</title>
     <link rel="stylesheet" href="css/production.css">
   </head>
   <body>
@@ -38,120 +39,110 @@
             <div id="js-componentTabPane" class="componentTabPane">
               <!-- Buttons will be rendered here by JS -->
             </div>
+            <div class="sidebarActions">
+              <button id="js-copyConfigBtn" class="secondaryBtn" title="Copy configuration to clipboard">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                Copy Config
+              </button>
+              <button id="js-clearAllBtn" class="secondaryBtn secondaryBtn--danger" title="Remove all components">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+                Clear All
+              </button>
+            </div>
           </div>
           <div class="columnsWrapper">
-            <div id="js-column1" class="column column1 active"></div>
-            <div id="js-column2" class="column column2"></div>
-            <div id="js-column3" class="column column3"></div>
-            <div id="js-column4" class="column column4"></div>
+            <div class="columnWrapper columnWrapper1">
+              <div class="columnLabel">Header Row</div>
+              <div id="js-column1" class="column column1 active"></div>
+            </div>
+            <div class="columnWrapper columnWrapper2">
+              <div class="columnLabel">Column 1 - Desktop: Left | Mobile: First</div>
+              <div id="js-column2" class="column column2"></div>
+            </div>
+            <div class="columnWrapper columnWrapper3">
+              <div class="columnLabel">Column 2 - Desktop: Right | Mobile: Second</div>
+              <div id="js-column3" class="column column3"></div>
+            </div>
+            <div class="columnWrapper columnWrapper4">
+              <div class="columnLabel">Footer Row</div>
+              <div id="js-column4" class="column column4"></div>
+            </div>
           </div>
           <div id="js-componentInfoDrawer" class="componentInfoAside hidden">
             <button id="js-closeComponentInfoDrawer" class="closeDrawerBtn">Close</button>
             <h3 class="componentInfoHeading">Component Information</h3>
             <div id="js-component1-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Stock Heading</strong> component.</p>
+                <p><strong>Small Image and Heading:</strong> Displays the vehicle image thumbnail with the make, model, and variant name.</p>
               </div>
             </div>
             <div id="js-component2-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Stock Price</strong> component.</p>
+                <p><strong>CTAs:</strong> Call-to-action buttons for primary actions like 'Book Test Drive' or 'Make an Enquiry'.</p>
               </div>
             </div>
             <div id="js-component3-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Reserve Now</strong> component.</p>
+                <p><strong>Price:</strong> Displays the vehicle price with optional was/now pricing and drive-away information.</p>
               </div>
             </div>
             <div id="js-component4-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Mystery</strong> component.</p>
+                <p><strong>Image Carousel:</strong> Full-width image gallery showcasing vehicle photos with thumbnails and navigation.</p>
               </div>
             </div>
             <div id="js-component5-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Image Carousel</strong> component.</p>
+                <p><strong>Heading and CTAs:</strong> Section heading with related call-to-action buttons. Can be configured for specific sections.</p>
               </div>
             </div>
             <div id="js-component6-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <label class="imRadioLabel" for="formRadio1">
-                  <input type="radio" name="formSelection" id="formRadio1" value="1">
-                  Basic Enquiry Form
-                </label>
-                <label class="imRadioLabel" for="formRadio2">
-                  <input type="radio" name="formSelection" id="formRadio2" value="2">
-                  Book a Service Form
-                </label>
-                <label class="imRadioLabel" for="formRadio3">
-                  <input type="radio" name="formSelection" id="formRadio3" value="3">
-                  Book a Test Drive Form
-                </label>
-                <label class="imRadioLabel" for="formRadio4">
-                  <input type="radio" name="formSelection" id="formRadio4" value="4">
-                  Finance Form
-                </label>
-                <label class="imRadioLabel" for="formRadio5">
-                  <input type="radio" name="formSelection" id="formRadio5" value="5">
-                  Fleet Form
-                </label>
-                <label class="imRadioLabel" for="formRadio6">
-                  <input type="radio" name="formSelection" id="formRadio6" value="6">
-                  Get a Quote Form
-                </label>
-                <label class="imRadioLabel" for="formRadio7">
-                  <input type="radio" name="formSelection" id="formRadio7" value="7">
-                  Make an Offer Form
-                </label>
-                <label class="imRadioLabel" for="formRadio8">
-                  <input type="radio" name="formSelection" id="formRadio8" value="8">
-                  Trade In Enquiry Form
-                </label>
+                <p><strong>Finance Calculator:</strong> Interactive finance calculator allowing customers to estimate repayments with adjustable deposit and term.</p>
               </div>
             </div>
             <div id="js-component7-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>CTAs</strong> component.</p>
+                <p><strong>Good Price/Best Price Comparison:</strong> Shows the vehicle's price comparison against market average with visual indicators.</p>
               </div>
             </div>
             <div id="js-component8-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Key Features</strong> component.</p>
+                <p><strong>Stock Features:</strong> Key vehicle features displayed as a list with icons (e.g., kilometres, transmission, fuel type).</p>
               </div>
             </div>
             <div id="js-component9-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Dealer Location</strong> component.</p>
+                <p><strong>Stock Comments:</strong> Dealer comments and vehicle description providing additional context and selling points.</p>
               </div>
             </div>
             <div id="js-component10-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Dealer Comments</strong> component.</p>
+                <p><strong>Accordion:</strong> Expandable sections for detailed information like specifications, features, or warranty details.</p>
               </div>
             </div>
             <div id="js-component11-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Specifications</strong> component.</p>
+                <p><strong>Similar Vehicles:</strong> Carousel showing related vehicles from the same dealership or similar make/model.</p>
               </div>
             </div>
             <div id="js-component12-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Disclaimer</strong> component.</p>
+                <p><strong>Enquire Now Form Accordion:</strong> Collapsible enquiry form that expands to show contact fields. Multiple form types available.</p>
               </div>
             </div>
             <div id="js-component13-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Stock Specials</strong> component.</p>
+                <p><strong>Wildcard:</strong> Flexible component for custom content blocks, promotional banners, or dealer-specific messaging.</p>
               </div>
             </div>
             <div id="js-component14-information" class="componentInfo hidden">
               <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Price Rating</strong> component.</p>
-              </div>
-            </div>
-            <div id="js-component15-information" class="componentInfo hidden">
-              <div class="componentInfoTextWrapper">
-                <p>There is currently no information available for the <strong>Similar Vehicles</strong> component.</p>
+                <p><strong>Map Locations:</strong> Interactive map showing dealership locations with contact details and directions.</p>
               </div>
             </div>
 
@@ -160,6 +151,6 @@
       </div>
     </main>
     <script src="./js/sortable.js"></script>
-    <script src="./js/development.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

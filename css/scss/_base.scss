@@ -1,10 +1,36 @@
 @font-face {
-  font-family: "Roboto";
+  font-family: 'Lexend Regular';
+  font-style: normal;
+  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Lexend-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Lexend SemiBold';
+  font-style: normal;
+  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Lexend-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Lexend Bold';
+  font-style: normal;
+  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Lexend-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Roboto Regular';
+  font-style: normal;
   src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-Regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Roboto Bold";
+  font-family: 'Roboto SemiBold';
+  font-style: normal;
+  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Roboto Bold';
+  font-style: normal;
   src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-Bold.woff2") format("woff2");
 }
 
@@ -44,23 +70,27 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--imColBlack);
-  background-color: var(--imColWhite);
+  font-family: 'Roboto Regular', 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--imColBlackAbaddon);
+  background-color: var(--imColBlack3);
   height: 100%;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 strong {
-  font-family: 'Roboto Bold', sans-serif;
+  font-family: 'Roboto SemiBold', 'Helvetica', 'Arial', sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  text-align: center;
+  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1.2;
+  margin: 0;
 }
 
 ol,
@@ -70,14 +100,14 @@ li {
   padding: 0;
 }
 
-.main,
-.container  {
-  height: 100%;
+.main {
+  height: 100vh;
+  overflow: hidden;
 }
 
 .container {
-  max-width: 1600px;
-  margin-inline: auto;
+  height: 100%;
+  max-width: none;
 }
 
 .flexWrapper {
@@ -88,9 +118,26 @@ li {
 }
 
 .imRadioLabel {
-  font-size: 14px;
+  font-size: 13px;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   cursor: pointer;
+  transition: color 150ms ease-in-out;
+
+  &:hover {
+    color: var(--imColSecondary);
+  }
+}
+
+// Focus visible styles
+*:focus-visible {
+  outline: 2px solid var(--imColSecondary);
+  outline-offset: 2px;
+}
+
+// Selection styles
+::selection {
+  background-color: var(--imColSecondary);
+  color: var(--imColWhite);
 }
