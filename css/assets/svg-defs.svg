@@ -97,4 +97,29 @@
     <desc>Icon of trash garbage can with little padding</desc>
     <path d="M18,3v2H4V3h3.5l1-1h5l1,1H18z M5,18V6h12v12c0,0.6-0.2,1-0.6,1.4C16,19.8,15.5,20,15,20H7c-0.6,0-1-0.2-1.4-0.6C5.2,19,5,18.5,5,18z"/>
   </symbol>
+    <symbol id="svg-export-all" viewBox="0 0 23 20">
+    <desc>Icon of two arrows curving bottom left to top right</desc>
+    <path d="M10.6,12.3c-4.7,0-8.2,1.6-10.5,4.9c0.5-2.6,1.4-4.6,2.6-6C3.8,9.7,5,8.7,6.3,8C7.5,7.3,9,6.9,10.6,6.7V2.9l6.6,6.6l-6.6,6.6V12.3L10.6,12.3z M16.3,2.9l6.6,6.6l-6.6,6.6v-2.9l3.8-3.8l-3.8-3.8V2.9z"/>
+  </symbol>
+  <symbol id="svg-export-all-sq" viewBox="0 0 30 30">
+    <desc>Icon of two arrows curving bottom left to top right</desc>
+    <path d="M14.1,17.3c-4.7,0-8.2,1.6-10.5,4.9c0.5-2.6,1.4-4.6,2.6-6c1.1-1.4,2.4-2.5,3.6-3.1c1.3-0.7,2.7-1.1,4.3-1.4V7.9l6.6,6.6
+      l-6.6,6.6V17.3L14.1,17.3z M19.8,7.9l6.6,6.6l-6.6,6.6v-2.9l3.8-3.8l-3.8-3.8V7.9z"/>
+  </symbol>
+  <symbol id="svg-import-all" viewBox="0 0 30 30">
+    <desc>Icon of two arrows curving top left to bottom right</desc>
+    <path d="M12.7727,14.0558q0-7.0078-4.8614-10.4811A13.92,13.92,0,0,1,13.91,6.1282,12.0125,12.0125,0,0,1,17.032,9.752a13.1684,13.1684,0,0,1,1.36,4.3038h3.7911l-6.6455,6.6455L8.8923,14.0558Zm9.4107,5.7088L15.5379,26.41,8.8923,19.7646h2.8544l3.7912,3.7912,3.7911-3.7912Z"/>
+  </symbol>
+  <symbol id="svg-arrows-expand-hor" viewBox="0 0 30 30">
+    <desc>Icon of a horizontal line with an arrow on both ends and two vertical lines on the left and right of the arrows.</desc>
+    <path d="M11.25,13.75h7.5v-3.75l5,5-5,5v-3.75h-7.5v3.75l-5-5,5-5v3.75M2.5,25V5h2.5v20h-2.5M25,25V5h2.5v20h-2.5Z"/>
+  </symbol>
+  <symbol id="svg-arrows-hor" viewBox="0 0 30 30">
+    <desc>Icon of two arrow heads pointing east and west.</desc>
+    <path d="M22.7125,15l-3.9625-3.9625,1.7625-1.775,5.7375,5.7375-5.7375,5.725-1.7625-1.7625,3.9625-3.9625M7.2875,15l3.9625,3.9625-1.7625,1.775-5.7375-5.7375,5.7375-5.725,1.7625,1.7625-3.9625,3.9625Z"/>
+  </symbol>
+  <symbol id="svg-export" viewBox="0 0 30 30">
+    <desc>Icon of one arrow curving bottom left to top right</desc>
+    <path d="M4.5,23.8c0.7-3.2,1.7-5.6,3.1-7.4c1.4-1.7,2.9-3,4.4-3.8c1.5-0.8,3.3-1.4,5.3-1.7V6.2l8.1,8.1l-8.1,8.1v-4.8 C11.6,17.8,7.3,19.8,4.5,23.8z"/>
+  </symbol>
 </svg>
