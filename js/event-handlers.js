@@ -1,7 +1,8 @@
 import {
   component_item_id_prefix,
   visibility_selector_id_prefix,
-  get_fade_transition_duration
+  get_fade_transition_duration,
+  getComponentAsideInfo
 } from './config.js';
 
 import {
@@ -23,7 +24,7 @@ export function attach_component_events() {
     selector.onchange = () => {
       const instanceId = selector.id.replace(visibility_selector_id_prefix + '-', '');
       const value = selector.value;
-      
+
       if (updateInstanceVisibility(instanceId, value)) {
         render_component_items();
       }
@@ -56,19 +57,21 @@ export function attach_component_events() {
 }
 
 /**
- * Handles info button click to toggle visibility of component information
+ * Handles info button click to show component information from the catalog
  * @param {number} typeId
  */
 function toggleComponentInformation(typeId) {
-  const allInfoDivs = document.querySelectorAll('.js-aside-info-text-wrapper');
-  const targetInfoDiv = document.getElementById(`js-component${typeId}-information`);
+  const contentWrapper = document.getElementById('js-component-info-content');
+  const asideInfoParagraph = contentWrapper?.querySelector('.lb-aside-info-text');
+  const info = getComponentAsideInfo(typeId);
 
-  // Hide all information divs
-  allInfoDivs.forEach(div => div.classList.add('hidden'));
+  if (!contentWrapper || !asideInfoParagraph) return;
 
-  // Show the target information div
-  if (targetInfoDiv) {
-    targetInfoDiv.classList.remove('hidden');
+  if (info) {
+    asideInfoParagraph.innerHTML = `<strong>${info.name}:</strong> ${info.asideInfo}`;
+    contentWrapper.classList.remove('hidden');
+  } else {
+    contentWrapper.classList.add('hidden');
   }
 }
 

@@ -112,10 +112,10 @@
         <div class="lb-layout-builder-wrapper js-layout-builder-wrapper">
           <div id="js-componentBtnsAside" class="lb-aside-wrapper">
             <div class="lb-aside-tabs">
-              <button id="js-componentsTab1" class="lb-aside-tab js-aside-tab" data-tab="1">Header</button>
-              <button id="js-componentsTab2" class="lb-aside-tab js-aside-tab" data-tab="2">Column 1</button>
-              <button id="js-componentsTab3" class="lb-aside-tab js-aside-tab" data-tab="3">Column 2</button>
-              <button id="js-componentsTab4" class="lb-aside-tab js-aside-tab" data-tab="4">Footer</button>
+              <button id="js-componentsTab1" class="js-aside-tab lb-aside-tab" data-tab="1">Header</button>
+              <button id="js-componentsTab2" class="js-aside-tab lb-aside-tab" data-tab="2">Column 1</button>
+              <button id="js-componentsTab3" class="js-aside-tab lb-aside-tab" data-tab="3">Column 2</button>
+              <button id="js-componentsTab4" class="js-aside-tab lb-aside-tab" data-tab="4">Footer</button>
             </div>
             <div id="js-componentTabPane" class="lb-aside-tabs-pane-wrapper">
               <!-- Buttons will be rendered here by JS -->
@@ -133,93 +133,28 @@
           </div>
           <div class="lb-body-columns-wrapper">
             <div class="lb-body-column-wrapper column-wrapper-1">
-              <div class="lb-body-column-heading">Header Row</div>
+              <div class="lb-body-column-heading">Header</div>
               <div id="js-column1" class="lb-body-column-target-wrapper js-body-column-target-wrapper column-target-1 active"></div>
             </div>
             <div class="lb-body-column-wrapper column-wrapper-2">
-              <div class="lb-body-column-heading" title="Desktop: Left | Mobile: Stacked Top">Left Column</div>
+              <div class="lb-body-column-heading" title="Desktop: Left | Mobile: Stacked Top">Column 1</div>
               <div id="js-column2" class="lb-body-column-target-wrapper js-body-column-target-wrapper column-target-2"></div>
             </div>
             <div class="lb-body-column-wrapper column-wrapper-3">
-              <div class="lb-body-column-heading" title="Desktop: Right | Mobile: Stacked Bottom">Right Column</div>
+              <div class="lb-body-column-heading" title="Desktop: Right | Mobile: Stacked Bottom">Column 2</div>
               <div id="js-column3" class="lb-body-column-target-wrapper js-body-column-target-wrapper column-target-3"></div>
             </div>
             <div class="lb-body-column-wrapper column-wrapper-4">
-              <div class="lb-body-column-heading">Footer Row</div>
+              <div class="lb-body-column-heading">Footer</div>
               <div id="js-column4" class="lb-body-column-target-wrapper js-body-column-target-wrapper column-target-4"></div>
             </div>
           </div>
           <div id="js-componentInfoDrawer" class="lb-aside-info-wrapper hidden">
             <button id="js-closeComponentInfoDrawer" class="lb-aside-info-close-btn">Close</button>
             <h3 class="lb-aside-info-heading">Component Information</h3>
-            <div id="js-component1-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
+            <div id="js-component-info-content" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
               <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Small Image and Heading:</strong> Displays the vehicle image thumbnail with the make, model, and variant name.</p>
-              </div>
-            </div>
-            <div id="js-component2-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>CTAs:</strong> Call-to-action buttons for primary actions like 'Book Test Drive' or 'Make an Enquiry'.</p>
-              </div>
-            </div>
-            <div id="js-component3-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Price:</strong> Displays the vehicle price with optional was/now pricing and drive-away information.</p>
-              </div>
-            </div>
-            <div id="js-component4-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Image Carousel:</strong> Full-width image gallery showcasing vehicle photos with thumbnails and navigation.</p>
-              </div>
-            </div>
-            <div id="js-component5-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Heading and CTAs:</strong> Section heading with related call-to-action buttons. Can be configured for specific sections.</p>
-              </div>
-            </div>
-            <div id="js-component6-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Finance Calculator:</strong> Interactive finance calculator allowing customers to estimate repayments with adjustable deposit and term.</p>
-              </div>
-            </div>
-            <div id="js-component7-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Good Price/Best Price Comparison:</strong> Shows the vehicle's price comparison against market average with visual indicators.</p>
-              </div>
-            </div>
-            <div id="js-component8-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Stock Features:</strong> Key vehicle features displayed as a list with icons (e.g., kilometres, transmission, fuel type).</p>
-              </div>
-            </div>
-            <div id="js-component9-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Stock Comments:</strong> Dealer comments and vehicle description providing additional context and selling points.</p>
-              </div>
-            </div>
-            <div id="js-component10-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Accordion:</strong> Expandable sections for detailed information like specifications, features, or warranty details.</p>
-              </div>
-            </div>
-            <div id="js-component11-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Similar Vehicles:</strong> Carousel showing related vehicles from the same dealership or similar make/model.</p>
-              </div>
-            </div>
-            <div id="js-component12-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Enquire Now Form Accordion:</strong> Collapsible enquiry form that expands to show contact fields. Multiple form types available.</p>
-              </div>
-            </div>
-            <div id="js-component13-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Wildcard:</strong> Flexible component for custom content blocks, promotional banners, or dealer-specific messaging.</p>
-              </div>
-            </div>
-            <div id="js-component14-information" class="lb-aside-info-text-wrapper js-aside-info-text-wrapper hidden">
-              <div class="lb-aside-info-text-item">
-                <p class="lb-aside-info-text"><strong>Map Locations:</strong> Interactive map showing dealership locations with contact details and directions.</p>
+                <p class="lb-aside-info-text"></p>
               </div>
             </div>
 

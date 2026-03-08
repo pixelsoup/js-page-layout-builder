@@ -106,7 +106,7 @@ function createComponentButtonHTML(compType, instanceCount) {
  * @returns {string} HTML string for empty state
  */
 function createEmptyStateHTML() {
-  return `<div class="lb-empty-state-wrapper js-empty-state-wrapper"><svg class="icon-lb-empty-state" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><p class="lb-empty-state-text">No components yet</p></div>`;
+  return `<div class="lb-empty-state-wrapper js-empty-state-wrapper"><svg class="lb-empty-state-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><p class="lb-empty-state-text">No components yet</p></div>`;
 }
 
 /**
@@ -167,7 +167,7 @@ export function render_component_buttons(active_tab = 1) {
       const instanceCount = getInstancesByType(compType.typeId).length;
       return createComponentButtonHTML(compType, instanceCount);
     }).join('');
-    
+
     main_tabs_panel.innerHTML = buttonsHTML;
     main_tabs_panel.dataset.initialized = 'true';
 

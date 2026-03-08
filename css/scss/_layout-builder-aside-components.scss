@@ -19,12 +19,49 @@
 }
 
 .lb-aside-tabs {
-  display: flex;
-  gap: 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
   width: 100%;
-  background-color: var(--imColBlack10);
+  background-color: var(--imColWhite);
   border-radius: var(--imThemeBorderRadiusMd);
   padding: 2px;
+
+  // Header (tab 1) and Footer (tab 4) full width; Column 1 & 2 (tabs 2 & 3) 50% each
+  .lb-aside-tab:nth-child(1),
+  .lb-aside-tab:nth-child(4) {
+    grid-column: 1 / -1;
+  }
+}
+
+.lb-aside-tab {
+  font-family: 'Lexend SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  color: var(--imColBlack70);
+  cursor: pointer;
+  text-align: center;
+  padding: 10px 12px;
+  background-color: var(--imColBlack5);
+  border-radius: var(--imThemeBorderRadiusSm);
+  border: 0;
+  position: relative;
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    color: var(--imColBlack);
+    background-color: var(--imColBlack10);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--imColSecondary);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    color: var(--imColWhite);
+    background-color: var(--imColSecondary);
+    box-shadow: 0 2px 4px rgba(63, 60, 228, 0.2);
+  }
 }
 
 .lb-aside-tabs-pane-wrapper {

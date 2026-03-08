@@ -1,42 +1,14 @@
 // Component Items
 
-// Empty state
-.lb-empty-state-wrapper {
-  color: var(--imColBlack40);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 20px;
-  border: 2px dashed var(--imColBlack20);
-  border-radius: var(--imThemeBorderRadiusSm);
-  background-color: var(--imColBlack3);
-  min-height: 120px;
-  pointer-events: none;
-  transition: border-color 150ms ease-in-out, background-color 150ms ease-in-out;
-
-  .lb-body-column-target-wrapper:hover & {
-    border-color: var(--imColBlack50);
-    background-color: var(--imColBlack5);
-  }
-}
-
-.lb-empty-state-text {
-  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
-  font-size: 12px;
-  color: var(--imColBlack50);
-  margin: 0;
-}
-
 .lb-component-item-wrapper {
   font-size: 13px;
   color: var(--imColWhite);
   background-color: var(--imColBlack40);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 6px 8px;
+  padding: 4px 8px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   opacity: 1;
   overflow: hidden;
   border: 0;
@@ -74,6 +46,7 @@
   gap: 6px;
   user-select: none;
   width: 100%;
+  padding-block: 3px; // increase target area for dragging
 
   &:active {
     cursor: grabbing;
@@ -86,6 +59,7 @@
   gap: 4px;
   flex-wrap: wrap;
   width: 100%;
+  padding-block: 3px;  // match padding of header name
 }
 
 .lb-component-trigger-btns-wrapper {

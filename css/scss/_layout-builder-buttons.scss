@@ -1,36 +1,5 @@
 // Buttons
 
-.lb-aside-tab {
-  font-family: 'Lexend SemiBold', 'Helvetica', 'Arial', sans-serif;
-  font-size: 13px;
-  color: var(--imColBlack70);
-  cursor: pointer;
-  text-align: center;
-  flex: 1;
-  padding: 10px 12px;
-  background-color: transparent;
-  border-radius: var(--imThemeBorderRadiusSm);
-  border: 0;
-  position: relative;
-  transition: all 150ms ease-in-out;
-
-  &:hover {
-    color: var(--imColBlack);
-    background-color: var(--imColBlack5);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--imColSecondary);
-    outline-offset: 2px;
-  }
-
-  &.active {
-    color: var(--imColWhite);
-    background-color: var(--imColSecondary);
-    box-shadow: 0 2px 4px rgba(63, 60, 228, 0.2);
-  }
-}
-
 .lb-aside-tabs-pane-btn {
   font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
   font-size: 13px;
