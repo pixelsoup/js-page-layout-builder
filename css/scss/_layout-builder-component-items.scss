@@ -24,12 +24,10 @@
     all 150ms ease-in-out;
 
   &:hover {
-    background-color: var(--imfListRowContrastBgCol, var(--imColBlack50));
     box-shadow: var(--imLbShadowMd);
   }
 
   &:focus-within {
-    background-color: var(--imfListRowContrastBgCol, var(--imColBlack50));
     box-shadow: 0 0 0 2px var(--imColSecondary);
   }
 
@@ -59,9 +57,14 @@
   padding-block: var(--imGapSmall); // increase target area for dragging
   padding-inline: var(--imGapTiny) ;
   border-bottom: 1px solid var(--imColBlack20);
+  transition: background-color 150ms ease-in-out;
 
   &:active {
     cursor: grabbing;
+  }
+
+  &:hover {
+    background-color: var(--imfListRowContrastBgCol, var(--imColBlack50));
   }
 }
 

@@ -49,6 +49,7 @@
 
 
 .lb-body-column-target-wrapper {
+  cursor: pointer;
   border: 2px solid var(--imColBlack20);
   box-sizing: border-box;
   padding: var(--imGapMedium);
@@ -60,7 +61,7 @@
   background-color: var(--imColWhite);
   box-shadow: var(--imLbShadowSm);
   position: relative;
-  transition: all 150ms ease-in-out;
+  transition: border-color 150ms ease-in-out, background-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
 
   &.active {
     border-color: var(--imColSecondary);
@@ -69,9 +70,8 @@
   }
 
   &:hover {
-    cursor: pointer;
     border-color: var(--imColSecondary);
-    background-color: var(--imColBlack5);
+    background-color: var(--imColBlack3);
   }
 }
 
