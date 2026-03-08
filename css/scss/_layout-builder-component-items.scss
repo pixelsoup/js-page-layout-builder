@@ -7,7 +7,7 @@
   color: var(--imColTextPrimary, var(--imColWhite));
   background-color: var(--imfListRowBgCol, var(--imColBlack40));
   box-shadow: var(--imLbShadowSm);
-  padding: var(--imGapTiny) var(--imGapSmall);
+  // padding: var(--imGapTiny) var(--imGapSmall);
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -36,6 +36,14 @@
   &:last-child {
     margin: 0;
   }
+
+  &.fading-out {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
 }
 
 .lb-component-item-header-name {
@@ -48,7 +56,9 @@
   gap: 6px;
   user-select: none;
   width: 100%;
-  padding-block: 3px; // increase target area for dragging
+  padding-block: var(--imGapSmall); // increase target area for dragging
+  padding-inline: var(--imGapTiny) ;
+  border-bottom: 1px solid var(--imColBlack20);
 
   &:active {
     cursor: grabbing;
@@ -61,7 +71,8 @@
   gap: var(--imGapTiny);
   flex-wrap: wrap;
   width: 100%;
-  padding-block: 3px;  // match padding of header name
+  padding-block: var(--imGapTiny);
+  padding-inline: var(--imGapTiny) ;
 }
 
 .lb-component-trigger-btns-wrapper {

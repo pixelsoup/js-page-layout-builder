@@ -55,15 +55,6 @@
   }
 }
 
-.lb-aside-tabs-pane-btn.fading-out,
-.lb-component-item-wrapper.fading-out {
-  opacity: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
-}
-
 .lb-aside-actions-btn {
   font-family: var(--imPrimaryFontStackSemiBold);
   font-size: var(--imGlobalFontSize, 13px);
@@ -181,21 +172,4 @@
   height: 28px;
   fill: var(--imIndexIconNeutralFill, var(--imColWhite));
   transition: fill 150ms ease-in-out;
-
-  // .lb-component-trigger-btn:hover & {
-  //   fill: var(--imColSecondary);
-  // }
 }
-
-// .icon-info {
-//   .lb-component-trigger-btn:hover & {
-//     fill: var(--imColSecondary);
-//   }
-// }
-
-
-// .icon-delete  {
-//   .lb-component-trigger-btn:hover & {
-//     fill: var(--imColRed);
-//   }
-// }
