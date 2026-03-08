@@ -115,7 +115,7 @@ function createEmptyStateHTML() {
  * @returns {string} HTML string for visibility selector
  */
 function createVisibilitySelectorHTML(instanceId, visibilityValue) {
-  return `<select id="${visibility_selector_id_prefix}-${instanceId}" class="lb-component-visibility-select js-component-visibility-select" title="Visibility"><option value="both" ${visibilityValue === 'both' ? 'selected' : ''}>Both</option><option value="desktop" ${visibilityValue === 'desktop' ? 'selected' : ''}>Desktop only</option><option value="mobile" ${visibilityValue === 'mobile' ? 'selected' : ''}>Mobile only</option></select>`;
+  return `<select id="${visibility_selector_id_prefix}-${instanceId}" class="lb-component-visibility-select js-component-visibility-select" title="Visibility"><option value="both" ${visibilityValue === 'both' ? 'selected' : ''}>Always visible</option><option value="desktop" ${visibilityValue === 'desktop' ? 'selected' : ''}>Desktop only</option><option value="mobile" ${visibilityValue === 'mobile' ? 'selected' : ''}>Mobile only</option></select>`;
 }
 
 /**

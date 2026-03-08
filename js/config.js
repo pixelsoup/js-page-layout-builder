@@ -26,7 +26,7 @@ export const componentCatalog = [
   { typeId: 3, componentName: 'stock_price', name: 'Price', column: [1], asideInfo: 'Displays the vehicle price with optional was/now pricing and drive-away information.' },
   { typeId: 4, componentName: 'stock_image_carousel_wide', name: 'Image Carousel Wide', column: [1], asideInfo: 'Full-width image gallery showcasing vehicle photos with thumbnails and navigation.' },
   { typeId: 5, componentName: 'stock_image_carousel', name: 'Image Carousel', column: [2, 3], asideInfo: 'Image gallery showcasing vehicle photos with thumbnails and navigation.' },
-  { typeId: 6, componentName: 'stock_heading_ctas', name: 'Heading and CTAs', column: [2, 3], asideInfo: 'Section heading with related call-to-action buttons. Can be configured for specific sections.' },
+  { typeId: 6, componentName: 'stock_heading_ctas', name: 'Heading and CTAs', column: [2, 3], asideInfo: 'Displays the make, model, variant name and price. The CTAs can be configured to open a standard form, internal link, external link, iframe finance forms or dynamic forms.' },
   { typeId: 7, componentName: 'stock_finance_calculator', name: 'Finance Calculator', column: [2, 3], asideInfo: 'Interactive finance calculator allowing customers to estimate repayments with adjustable deposit and term.' },
   { typeId: 8, componentName: 'stock_price_comparison', name: 'Price Comparison', column: [2, 3], asideInfo: "Shows the vehicle's price comparison against market average with visual indicators." },
   { typeId: 9, componentName: 'stock_features', name: 'Stock Features', column: [2, 3], asideInfo: 'Key vehicle features displayed as a list with icons (e.g., kilometres, transmission, fuel type).' },
