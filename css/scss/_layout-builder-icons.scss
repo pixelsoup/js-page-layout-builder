@@ -1,7 +1,7 @@
 
 .icon-svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .icon-aside-component-add {
@@ -27,16 +27,5 @@
   &:hover {
     opacity: 1;
     transform: scale(1.1);
-  }
-}
-
-.icon-component-trigger {
-  width: 24px;
-  height: 24px;
-  //background-color: var(--imColBlack60);
-  fill: var(--imColWhite);
-
-  &:hover {
-    background-color: var(--imColRed);
   }
 }
