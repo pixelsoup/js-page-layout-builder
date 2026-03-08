@@ -68,7 +68,7 @@ export function render_component_buttons(active_tab = 1) {
       
       const instanceCount = getInstancesByType(compType.typeId).length;
       const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-      button.innerHTML = `${compType.name}${countLabel} <span class="icon-trigger icon-add">+</span>`;
+      button.innerHTML = `${compType.name}${countLabel} <svg class="icon-trigger icon-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
 
       button.onclick = () => {
         addComponentInstance(compType.typeId);
@@ -105,7 +105,7 @@ export function update_button_states() {
     if (add_button) {
       const instanceCount = getInstancesByType(compType.typeId).length;
       const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-      add_button.innerHTML = `${compType.name}${countLabel} <span class="icon-trigger icon-add">+</span>`;
+      add_button.innerHTML = `${compType.name}${countLabel} <svg class="icon-trigger icon-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
     }
   });
 }

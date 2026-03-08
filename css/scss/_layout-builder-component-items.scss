@@ -13,7 +13,12 @@
   background-color: var(--imColBlack3);
   min-height: 120px;
   pointer-events: none;
-  transition: all 150ms ease-in-out;
+  transition: border-color 150ms ease-in-out, background-color 150ms ease-in-out;
+
+  .lb-body-column-target-wrapper:hover & {
+    border-color: var(--imColBlack50);
+    background-color: var(--imColBlack5);
+  }
 }
 
 .lb-empty-state-text {
@@ -21,11 +26,6 @@
   font-size: 12px;
   color: var(--imColBlack50);
   margin: 0;
-}
-
-.lb-body-column-target-wrapper:hover .lb-empty-state-wrapper {
-  border-color: var(--imColBlack30);
-  background-color: var(--imColBlack5);
 }
 
 .lb-component-item-wrapper {
@@ -38,7 +38,6 @@
   flex-direction: column;
   gap: 6px;
   opacity: 1;
-  margin: 0 0 10px 0;
   overflow: hidden;
   border: 0;
   border-radius: var(--imThemeBorderRadiusSm);
