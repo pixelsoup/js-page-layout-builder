@@ -104,7 +104,7 @@ export function initializeSortable() {
             const emptyState = document.createElement('div');
             emptyState.className = 'lb-empty-state-wrapper js-empty-state-wrapper';
             emptyState.innerHTML = `
-              <svg class="lb-empty-state-icon" viewBox="0 0 24 24">
+              <svg class="icon-lb-empty-state" viewBox="0 0 24 24">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
               </svg>
               <p class="lb-empty-state-text">Drop components here</p>

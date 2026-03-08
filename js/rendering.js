@@ -65,10 +65,10 @@ export function render_component_buttons(active_tab = 1) {
       button.id = `${component_add_button_id_prefix}${compType.typeId}`;
       button.className = `lb-aside-tabs-pane-btn btn-row${compType.row}`;
       button.setAttribute('title', `Add ${compType.name} component`);
-      
+
       const instanceCount = getInstancesByType(compType.typeId).length;
       const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-      button.innerHTML = `${compType.name}${countLabel} <svg class="icon-trigger icon-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
+      button.innerHTML = `${compType.name}${countLabel} <svg class="icon-svg icon-aside-component-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
 
       button.onclick = () => {
         addComponentInstance(compType.typeId);
@@ -105,7 +105,7 @@ export function update_button_states() {
     if (add_button) {
       const instanceCount = getInstancesByType(compType.typeId).length;
       const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-      add_button.innerHTML = `${compType.name}${countLabel} <svg class="icon-trigger icon-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
+      add_button.innerHTML = `${compType.name}${countLabel} <svg class="icon-svg icon-aside-component-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
     }
   });
 }
@@ -127,13 +127,13 @@ export function render_component_items() {
                               column_id === column_three_id ? column_three : column_four;
 
     const instances = get_sorted_instances(column_id);
-    
+
     // Empty state
     if (instances.length === 0) {
       const emptyState = document.createElement('div');
       emptyState.className = 'lb-empty-state-wrapper js-empty-state-wrapper';
       emptyState.innerHTML = `
-        <svg class="lb-empty-state-icon" viewBox="0 0 24 24">
+        <svg class="icon-lb-empty-state" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
         </svg>
         <p class="lb-empty-state-text">Drop components here</p>
@@ -170,21 +170,21 @@ export function render_component_items() {
 
       component_element.innerHTML = `
         <div class="lb-component-item-header-name js-component-item-header-name" title="Drag to reorder">
-          <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
+          <svg class="lg-icon icon-component-grabber"><use xlink:href="#svg-grabber"></use></svg>
           ${compType.name}
           ${visibilityBadge}
         </div>
         <div class="lb-component-triggers-wrapper">
           <button id="js-component-btn-info-${instance.instanceId}" class="lb-component-trigger-btn btn-info" title="Component info">
-            <svg class="icon-trigger icon-info"><use xlink:href="#svg-info-circle"></use></svg>
+            <svg class="icon-component-trigger icon-info"><use xlink:href="#svg-info-circle"></use></svg>
           </button>
           ${visibility_selector}
           <div class="lb-component-trigger-btns-wrapper">
             <button id="js-component-btn-duplicate-${instance.instanceId}" class="lb-component-trigger-btn btn-duplicate" title="Duplicate component">
-              <svg class="icon-trigger icon-duplicate"><use xlink:href="#svg-duplicate"></use></svg>
+              <svg class="icon-component-trigger icon-duplicate"><use xlink:href="#svg-duplicate"></use></svg>
             </button>
             <button class="lb-component-trigger-btn btn-delete js-btn-delete" data-instance-id="${instance.instanceId}" title="Delete component">
-              <svg class="icon-trigger icon-delete"><use xlink:href="#svg-trash"></use></svg>
+              <svg class="icon-component-trigger icon-delete"><use xlink:href="#svg-trash"></use></svg>
             </button>
           </div>
         </div>
@@ -199,7 +199,7 @@ export function render_component_items() {
 
   update_button_states();
   attach_component_events();
-  
+
   // CRITICAL: Reinitialize Sortable.js after rendering
   // We clear innerHTML, so DOM elements are destroyed and Sortable needs to be reattached
   if (initializeSortable) {

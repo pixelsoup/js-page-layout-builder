@@ -1,6 +1,29 @@
-// Icons
 
-.icon-grabber {
+.icon-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-aside-component-add {
+  color: var(--imColBlack60);
+  fill: var(--imColWhite);
+}
+
+.icon-aside-copy-config,
+.icon-aside-clear-all {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.icon-lb-empty-state {
+  width: 40px;
+  height: 40px;
+  fill: var(--imColBlack30);
+  margin-bottom: 8px;
+}
+
+.icon-component-grabber {
   width: 18px;
   height: 18px;
   fill: var(--imColWhite);
@@ -14,31 +37,13 @@
   }
 }
 
-.icon-trigger {
+.icon-component-trigger {
   width: 24px;
   height: 24px;
-  background-color: var(--imColBlack60);
+  //background-color: var(--imColBlack60);
   fill: var(--imColWhite);
 
   &:hover {
     background-color: var(--imColRed);
   }
-}
-
-.icon-copy-config,
-.icon-clear-all {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-.lb-empty-state-icon {
-  width: 40px;
-  height: 40px;
-  fill: var(--imColBlack30);
-  margin-bottom: 8px;
-}
-
-.icon-add {
-  color: var(--imColBlack60);
 }
