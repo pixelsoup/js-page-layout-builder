@@ -10,8 +10,8 @@ export function debugSortableStatus() {
   ['js-column1', 'js-column2', 'js-column3', 'js-column4'].forEach(colId => {
     const col = document.getElementById(colId);
     if (col) {
-      const wrappers = col.querySelectorAll('.componentItemWrapper');
-      const handles = col.querySelectorAll('.componentItemHeaderName');
+      const wrappers = col.querySelectorAll('.js-component-item-wrapper');
+      const handles = col.querySelectorAll('.js-component-item-header-name');
       
       console.log(`${colId}:`, {
         exists: true,
@@ -24,7 +24,7 @@ export function debugSortableStatus() {
       
       // Check if each wrapper has a handle
       wrappers.forEach((wrapper, idx) => {
-        const handle = wrapper.querySelector('.componentItemHeaderName');
+        const handle = wrapper.querySelector('.js-component-item-header-name');
         if (!handle) {
           console.warn(`  ⚠️  Component ${idx} missing drag handle!`);
         }
@@ -44,15 +44,15 @@ export function testDragSetup() {
   const col3 = document.getElementById('js-column3');
   
   if (col2 && col3) {
-    const items2 = col2.querySelectorAll('.componentItemWrapper');
-    const items3 = col3.querySelectorAll('.componentItemWrapper');
+    const items2 = col2.querySelectorAll('.js-component-item-wrapper');
+    const items3 = col3.querySelectorAll('.js-component-item-wrapper');
     
     console.log(`Column 2 (js-column2): ${items2.length} items`);
     console.log(`Column 3 (js-column3): ${items3.length} items`);
     
     if (items2.length > 0) {
       const firstItem = items2[0];
-      const handle = firstItem.querySelector('.componentItemHeaderName');
+      const handle = firstItem.querySelector('.js-component-item-header-name');
       console.log('First item in Column 2:', {
         id: firstItem.id,
         dataId: firstItem.dataset.id,

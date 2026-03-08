@@ -48,13 +48,13 @@ export function initializeSortable() {
     const isRow2Column = (colId === 'js-column2' || colId === 'js-column3');
 
     console.log(`Initializing Sortable for ${colId}, isRow2Column:`, isRow2Column);
-    console.log('  - Has componentItemWrapper elements:', col.querySelectorAll('.componentItemWrapper').length);
-    console.log('  - Has componentItemHeaderName handles:', col.querySelectorAll('.componentItemHeaderName').length);
+    console.log('  - Has componentItemWrapper elements:', col.querySelectorAll('.js-component-item-wrapper').length);
+    console.log('  - Has componentItemHeaderName handles:', col.querySelectorAll('.js-component-item-header-name').length);
 
     const sortableConfig = {
       animation: 150,
-      handle: '.componentItemHeaderName',
-      draggable: '.componentItemWrapper',
+      handle: '.js-component-item-header-name',
+      draggable: '.js-component-item-wrapper',
       dataIdAttr: 'data-id',
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
@@ -67,7 +67,7 @@ export function initializeSortable() {
         console.log('🎯 Drag started on', colId, '- Item:', evt.item.dataset.id);
 
         // Remove all empty states during drag to allow drops anywhere
-        document.querySelectorAll('.emptyState').forEach(es => {
+        document.querySelectorAll('.js-empty-state-wrapper').forEach(es => {
           es.dataset.parentId = es.parentElement.id;  // Store parent for restoration
           es.remove();
         });
@@ -95,19 +95,19 @@ export function initializeSortable() {
         console.log('🎯 Drag ended. From:', sourceCol.id, 'To:', destinationCol.id, '- Cross-column:', isCrossColumnMove);
 
         // Restore empty states only for columns that have no components
-        document.querySelectorAll('.column').forEach(colEl => {
-          const componentItems = colEl.querySelectorAll('.componentItemWrapper');
-          const hasEmptyState = colEl.querySelector('.emptyState');
+        document.querySelectorAll('.js-body-column-target-wrapper').forEach(colEl => {
+          const componentItems = colEl.querySelectorAll('.js-component-item-wrapper');
+          const hasEmptyState = colEl.querySelector('.js-empty-state-wrapper');
 
           if (componentItems.length === 0 && !hasEmptyState) {
             // Column is empty and needs an empty state
             const emptyState = document.createElement('div');
-            emptyState.className = 'emptyState';
+            emptyState.className = 'lb-empty-state-wrapper js-empty-state-wrapper';
             emptyState.innerHTML = `
-              <svg class="emptyState__icon" viewBox="0 0 24 24">
+              <svg class="lb-empty-state-icon" viewBox="0 0 24 24">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
               </svg>
-              <p class="emptyState__text">Drop components here</p>
+              <p class="lb-empty-state-text">Drop components here</p>
             `;
             colEl.appendChild(emptyState);
           } else if (componentItems.length > 0 && hasEmptyState) {
@@ -131,7 +131,7 @@ export function initializeSortable() {
                                   destColId === 'js-column3' ? 3 : 4;
 
         const destOrder = Array.from(destinationCol.children)
-          .filter(child => child.classList.contains('componentItemWrapper'))
+          .filter(child => child.classList.contains('lb-component-item-wrapper'))
           .map(child => child.dataset.id);
 
         console.log('New order in column', destColumnNumber, ':', destOrder);
@@ -146,7 +146,7 @@ export function initializeSortable() {
                                       sourceColId === 'js-column3' ? 3 : 4;
 
           const sourceOrder = Array.from(sourceCol.children)
-            .filter(child => child.classList.contains('componentItemWrapper'))
+            .filter(child => child.classList.contains('lb-component-item-wrapper'))
             .map(child => child.dataset.id);
 
           console.log('Source column', sourceColumnNumber, 'new order:', sourceOrder);

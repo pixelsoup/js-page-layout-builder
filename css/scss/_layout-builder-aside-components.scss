@@ -1,0 +1,45 @@
+// Aside Components - Structural containers only
+
+.lb-aside-wrapper {
+  background-color: var(--imColWhite);
+  border-right: 1px solid var(--imColBlack10);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  gap: 12px;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.lb-aside-tabs {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  background-color: var(--imColBlack10);
+  border-radius: var(--imThemeBorderRadiusMd);
+  padding: 2px;
+}
+
+.lb-aside-tabs-pane-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lb-aside-actions-wrapper {
+  width: 100%;
+  padding-top: 12px;
+  margin-top: auto;
+  border-top: 1px solid var(--imColBlack10);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

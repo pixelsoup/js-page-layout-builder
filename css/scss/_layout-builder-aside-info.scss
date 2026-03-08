@@ -1,0 +1,54 @@
+// Aside Info Drawer
+
+.lb-aside-info-wrapper {
+  background-color: var(--imColWhite);
+  border-left: 1px solid var(--imColBlack10);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  gap: 12px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+  animation: slideInRight 200ms ease-out;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.lb-aside-info-heading {
+  font-family: 'Lexend SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-size: 14px;
+  color: var(--imColBlack);
+  margin: 0 0 8px 0;
+}
+
+.lb-aside-info-text-wrapper {
+  font-size: 13px;
+  line-height: 1.5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--imColBlack3);
+  border-radius: var(--imThemeBorderRadiusSm);
+  border: 1px solid var(--imColBlack15);
+
+  &.hidden {
+    display: none;
+  }
+
+  strong {
+    color: var(--imColBlack);
+  }
+}
+
+.lb-aside-info-text {
+  margin: 0;
+  color: var(--imColBlack70);
+}

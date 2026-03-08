@@ -19,7 +19,7 @@ import { render_component_items } from './rendering.js';
  */
 export function attach_component_events() {
   // Visibility selector change handler
-  document.querySelectorAll('.componentVisibilitySelector').forEach(selector => {
+  document.querySelectorAll('.js-component-visibility-select').forEach(selector => {
     selector.onchange = () => {
       const instanceId = selector.id.replace(visibility_selector_id_prefix + '-', '');
       const value = selector.value;
@@ -31,7 +31,7 @@ export function attach_component_events() {
   });
 
   // Delete button handler
-  document.querySelectorAll('.btn-delete-wrapper').forEach(delete_button => {
+  document.querySelectorAll('.js-btn-delete').forEach(delete_button => {
     delete_button.onclick = () => {
       const instanceId = delete_button.dataset.instanceId;
       const instance = componentInstances.find(inst => inst.instanceId === instanceId);
@@ -60,7 +60,7 @@ export function attach_component_events() {
  * @param {number} typeId
  */
 function toggleComponentInformation(typeId) {
-  const allInfoDivs = document.querySelectorAll('.componentInfo');
+  const allInfoDivs = document.querySelectorAll('.js-aside-info-text-wrapper');
   const targetInfoDiv = document.getElementById(`js-component${typeId}-information`);
 
   // Hide all information divs
@@ -78,7 +78,7 @@ function toggleComponentInformation(typeId) {
  */
 function toggleComponentInfoDrawer(isOpen) {
   const infoDrawer = document.getElementById('js-componentInfoDrawer');
-  const layoutWrapper = document.querySelector('.layoutBuilderWrapper');
+  const layoutWrapper = document.querySelector('.js-layout-builder-wrapper');
 
   if (isOpen) {
     infoDrawer.classList.remove('hidden');

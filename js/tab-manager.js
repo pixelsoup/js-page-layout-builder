@@ -81,7 +81,7 @@ export function initTabButtons() {
   });
 
   // Initial render
-  document.querySelector('.componentsTab[data-tab="1"]').classList.add('active');
+  document.querySelector('.js-aside-tab[data-tab="1"]').classList.add('active');
 }
 
 /**

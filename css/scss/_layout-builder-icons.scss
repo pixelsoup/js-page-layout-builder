@@ -1,0 +1,40 @@
+// Icons
+
+.icon-grabber {
+  width: 18px;
+  height: 18px;
+  fill: var(--imColWhite);
+  opacity: 0.7;
+  flex-shrink: 0;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.icon-trigger {
+  width: 24px;
+  height: 24px;
+  background-color: var(--imColBlack60);
+  fill: var(--imColWhite);
+
+  &:hover {
+    background-color: var(--imColRed);
+  }
+}
+
+.icon-copy-config,
+.icon-clear-all {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.lb-empty-state-icon {
+  width: 40px;
+  height: 40px;
+  fill: var(--imColBlack30);
+  margin-bottom: 8px;
+}

@@ -4,12 +4,12 @@ export const column_one = document.querySelector('#js-column1');
 export const column_two = document.querySelector('#js-column2');
 export const column_three = document.querySelector('#js-column3');
 export const column_four = document.querySelector('#js-column4');
-export const tab_buttons = document.querySelectorAll('.componentsTab');
+export const tab_buttons = document.querySelectorAll('.js-aside-tab');
 
 // Prefixes and class names for DOM structure and styling
 export const component_add_button_id_prefix = 'js-componentBtn';
 export const component_item_id_prefix = 'js-component';
-export const component_item_wrapper_class = 'componentItemWrapper';
+export const component_item_wrapper_class = 'lb-component-item-wrapper';
 export const column_selector_id_prefix = 'js-colSelector';
 export const visibility_selector_id_prefix = 'js-visSelector';
 

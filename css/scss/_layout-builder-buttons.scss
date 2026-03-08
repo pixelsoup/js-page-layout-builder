@@ -1,0 +1,207 @@
+// Buttons
+
+.lb-aside-tab {
+  font-family: 'Lexend SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  color: var(--imColBlack70);
+  cursor: pointer;
+  text-align: center;
+  flex: 1;
+  padding: 10px 12px;
+  background-color: transparent;
+  border-radius: var(--imThemeBorderRadiusSm);
+  border: 0;
+  position: relative;
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    color: var(--imColBlack);
+    background-color: var(--imColBlack5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--imColSecondary);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    color: var(--imColWhite);
+    background-color: var(--imColSecondary);
+    box-shadow: 0 2px 4px rgba(63, 60, 228, 0.2);
+  }
+}
+
+.lb-aside-tabs-pane-btn {
+  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  color: var(--imColWhite);
+  cursor: pointer;
+  background-color: var(--imColBlack40);
+  opacity: 1;
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--imThemeBorderRadiusSm);
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  text-align: left;
+  gap: 8px;
+  transition:
+    opacity var(--fadeTransitionDuration) ease,
+    height var(--fadeTransitionDuration) ease,
+    margin var(--fadeTransitionDuration) ease,
+    background-color 150ms ease-in-out;
+
+  &:hover {
+    background-color: var(--imColBlack50);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--imColSecondary);
+    outline-offset: 2px;
+  }
+
+  &.inactive,
+  &.hidden {
+    display: none;
+  }
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.lb-aside-tabs-pane-btn.fading-out,
+.lb-component-item-wrapper.fading-out {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.lb-aside-actions-btn {
+  font-family: 'Roboto SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  color: var(--imColBlack);
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 16px;
+  background-color: var(--imColWhite);
+  border: 1px solid var(--imColBlack20);
+  border-radius: var(--imThemeBorderRadiusSm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 150ms ease-in-out;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background-color: var(--imColBlack5);
+    border-color: var(--imColSecondary);
+    color: var(--imColSecondary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--imColSecondary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:hover {
+      background-color: var(--imColWhite);
+      border-color: var(--imColBlack20);
+      color: var(--imColBlack);
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.lb-aside-actions-btn.btn-danger {
+  color: var(--imColRed);
+  border-color: var(--imColRed);
+
+  &:hover {
+    background-color: var(--imColRed);
+    border-color: var(--imColRed);
+    color: var(--imColWhite);
+  }
+}
+
+.lb-aside-info-close-btn {
+  font-family: 'Roboto SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-size: 13px;
+  color: var(--imColWhite);
+  cursor: pointer;
+  border: 0;
+  background-color: var(--imColBlack);
+  padding: 8px 16px;
+  border-radius: var(--imThemeBorderRadiusSm);
+  align-self: stretch;
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    background-color: var(--imColSecondary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--imColSecondary);
+    outline-offset: 2px;
+  }
+}
+
+.lb-component-trigger-btn {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 150ms ease-in-out;
+
+  &:focus-visible {
+    outline: 2px solid var(--imColSecondary);
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.btn-info,
+.btn-duplicate,
+.btn-delete {
+  // Modifier classes for trigger buttons
+}

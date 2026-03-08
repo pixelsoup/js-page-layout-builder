@@ -1,0 +1,98 @@
+// Body Columns
+
+.lb-body-columns-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-auto-rows: auto;
+  align-content: start;
+  padding: 20px;
+  gap: 16px;
+  background-color: var(--imColBlack3);
+  height: 100vh;
+  overflow-y: auto;
+
+  &.drawer-open {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+}
+
+.lb-body-column-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-wrapper-1,
+.column-wrapper-4 {
+  grid-column: 1 / 3;
+}
+
+.lb-body-column-heading {
+  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  font-size: 10px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--imColBlack70);
+  text-align: center;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background-color: var(--imColBlack8);
+  border-radius: 3px;
+  border: 1px solid var(--imColBlack15);
+}
+
+.lb-body-column-target-wrapper {
+  border: 2px solid var(--imColBlack20);
+  box-sizing: border-box;
+  padding: 12px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 150px;
+  border-radius: var(--imThemeBorderRadiusSm);
+  background-color: var(--imColWhite);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 150ms ease-in-out;
+
+  &.active {
+    border-color: var(--imColSecondary);
+    box-shadow: 0 2px 6px rgba(63, 60, 228, 0.1);
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: var(--imColBlack40);
+  }
+}
+
+// Sortable states
+.sortable-ghost {
+  opacity: 0.4;
+  background-color: var(--imColBlack10);
+  transform: scale(0.98);
+}
+
+.sortable-chosen {
+  cursor: grabbing;
+}
+
+.sortable-drag {
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+// Drag highlight state for columns
+.lb-body-column-target-wrapper.sortable-drag-over,
+.lb-body-column-target-wrapper.sortable-drag-active {
+  border-color: var(--imColSecondary);
+  background-color: rgba(63, 60, 228, 0.03);
+  box-shadow: 0 0 0 2px rgba(63, 60, 228, 0.1);
+}

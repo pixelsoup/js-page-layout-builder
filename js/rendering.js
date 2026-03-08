@@ -45,9 +45,9 @@ export function setEventHandlers(handlers) {
  */
 function getVisibilityBadge(hideOnMobile, hideOnDesktop) {
   if (hideOnMobile && !hideOnDesktop) {
-    return '<span class="visibilityBadge visibilityBadge--desktop">Desktop only</span>';
+    return '<span class="lb-component-visibility-badge visibility-badge-desktop">Desktop only</span>';
   } else if (!hideOnMobile && hideOnDesktop) {
-    return '<span class="visibilityBadge visibilityBadge--mobile">Mobile only</span>';
+    return '<span class="lb-component-visibility-badge visibility-badge-mobile">Mobile only</span>';
   }
   return '';
 }
@@ -63,7 +63,7 @@ export function render_component_buttons(active_tab = 1) {
     componentCatalog.forEach(compType => {
       const button = document.createElement('button');
       button.id = `${component_add_button_id_prefix}${compType.typeId}`;
-      button.className = `componentBtn componentBtn-row${compType.row}`;
+      button.className = `lb-aside-tabs-pane-btn btn-row${compType.row}`;
       button.setAttribute('title', `Add ${compType.name} component`);
       
       const instanceCount = getInstancesByType(compType.typeId).length;
@@ -131,12 +131,12 @@ export function render_component_items() {
     // Empty state
     if (instances.length === 0) {
       const emptyState = document.createElement('div');
-      emptyState.className = 'emptyState';
+      emptyState.className = 'lb-empty-state-wrapper js-empty-state-wrapper';
       emptyState.innerHTML = `
-        <svg class="emptyState__icon" viewBox="0 0 24 24">
+        <svg class="lb-empty-state-icon" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
         </svg>
-        <p class="emptyState__text">Drop components here</p>
+        <p class="lb-empty-state-text">Drop components here</p>
       `;
       elements_container.appendChild(emptyState);
     }
@@ -159,7 +159,7 @@ export function render_component_items() {
       else if (!instance.hideOnMobile && instance.hideOnDesktop) visibilityValue = 'mobile';
 
       const visibility_selector = `
-        <select id="${visibility_selector_id_prefix}-${instance.instanceId}" class="componentVisibilitySelector" title="Visibility">
+        <select id="${visibility_selector_id_prefix}-${instance.instanceId}" class="lb-component-visibility-select js-component-visibility-select" title="Visibility">
           <option value="both" ${visibilityValue === 'both' ? 'selected' : ''}>Both</option>
           <option value="desktop" ${visibilityValue === 'desktop' ? 'selected' : ''}>Desktop only</option>
           <option value="mobile" ${visibilityValue === 'mobile' ? 'selected' : ''}>Mobile only</option>
@@ -169,23 +169,23 @@ export function render_component_items() {
       const visibilityBadge = getVisibilityBadge(instance.hideOnMobile, instance.hideOnDesktop);
 
       component_element.innerHTML = `
-        <div class="componentItemHeaderName" title="Drag to reorder">
+        <div class="lb-component-item-header-name js-component-item-header-name" title="Drag to reorder">
           <svg class="lg-icon icon-grabber"><use xlink:href="#svg-grabber"></use></svg>
           ${compType.name}
           ${visibilityBadge}
         </div>
-        <div class="componentItemTriggersWrapper">
-          <button id="js-component-btn-info-${instance.instanceId}" class="btn-info-wrapper" title="Component info">
+        <div class="lb-component-triggers-wrapper">
+          <button id="js-component-btn-info-${instance.instanceId}" class="lb-component-trigger-btn btn-info" title="Component info">
             <svg class="icon-trigger icon-info"><use xlink:href="#svg-info-circle"></use></svg>
           </button>
           ${visibility_selector}
-          <div class="componentActionBtns">
-            <button id="js-component-btn-duplicate-${instance.instanceId}" class="btn-duplicate-wrapper" title="Duplicate component">
-              <svg class="icon-trigger icon-duplicate" viewBox="0 0 24 24">
-                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-              </svg>
+          <div class="lb-component-trigger-btns-wrapper">
+            <button id="js-component-btn-duplicate-${instance.instanceId}" class="lb-component-trigger-btn btn-duplicate" title="Duplicate component">
+              <svg class="icon-trigger icon-duplicate"><use xlink:href="#svg-duplicate"></use></svg>
             </button>
-            <button class="btn-delete-wrapper icon-trigger icon-delete" data-instance-id="${instance.instanceId}" title="Delete component">&ndash;</button>
+            <button class="lb-component-trigger-btn btn-delete js-btn-delete" data-instance-id="${instance.instanceId}" title="Delete component">
+              <svg class="icon-trigger icon-delete"><use xlink:href="#svg-trash"></use></svg>
+            </button>
           </div>
         </div>
       `;

@@ -1,0 +1,34 @@
+// Structure
+
+.lb-layout-builder-wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: start;
+  height: 100vh;
+  background-color: var(--imColBlack3);
+
+  &.drawer-open {
+    grid-template-columns: 280px 1fr 320px;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 240px 1fr;
+
+    &.drawer-open {
+      grid-template-columns: 240px 1fr 280px;
+    }
+  }
+}
+
+// Utility classes for frontend visibility
+.hide-on-mobile {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.hide-on-desktop {
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+}
