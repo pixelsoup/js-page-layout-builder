@@ -38,30 +38,28 @@ export function setEventHandlers(handlers) {
 }
 
 /**
- * Check if a component row matches the active tab
- * Supports both single number and array of numbers for backward compatibility
- * @param {number|number[]} row - Row value (number or array)
- * @param {number} active_tab - Active tab number
+ * Check if a component's eligible columns include the active tab (column)
+ * @param {number|number[]} column - Column value (number or array)
+ * @param {number} active_tab - Active tab number (1-4, equals column number)
  * @returns {boolean}
  */
-function rowMatchesActiveTab(row, active_tab) {
-  if (Array.isArray(row)) {
-    return row.includes(active_tab);
+function columnMatchesActiveTab(column, active_tab) {
+  if (Array.isArray(column)) {
+    return column.includes(active_tab);
   }
-  return row === active_tab;
+  return column === active_tab;
 }
 
 /**
- * Get CSS classes for component button based on row(s)
- * Supports both single number and array of numbers for backward compatibility
- * @param {number|number[]} row - Row value (number or array)
+ * Get CSS classes for component button based on eligible column(s)
+ * @param {number|number[]} column - Column value (number or array)
  * @returns {string} CSS classes
  */
-function getRowClasses(row) {
-  if (Array.isArray(row)) {
-    return row.map(r => `btn-row${r}`).join(' ');
+function getColumnClasses(column) {
+  if (Array.isArray(column)) {
+    return column.map(c => `btn-col${c}`).join(' ');
   }
-  return `btn-row${row}`;
+  return `btn-col${column}`;
 }
 
 /**
@@ -98,9 +96,9 @@ function createComponentButtonContentHTML(compType, instanceCount) {
  */
 function createComponentButtonHTML(compType, instanceCount) {
   const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-  const rowClasses = getRowClasses(compType.row);
+  const columnClasses = getColumnClasses(compType.column);
   const content = createComponentButtonContentHTML(compType, instanceCount);
-  return `<button id="${component_add_button_id_prefix}${compType.typeId}" class="lb-aside-tabs-pane-btn ${rowClasses}" title="Add ${compType.name} component" data-type-id="${compType.typeId}">${content}</button>`;
+  return `<button id="${component_add_button_id_prefix}${compType.typeId}" class="lb-aside-tabs-pane-btn ${columnClasses}" title="Add ${compType.name} component" data-type-id="${compType.typeId}">${content}</button>`;
 }
 
 /**
@@ -155,12 +153,12 @@ function getColumnElement(column_id) {
 }
 
 /**
- * Renders all "add component" buttons for the current tab, following the row structure.
- * Toggles visibility of buttons based on the currently selected tab.
- * @param {number} [active_tab=1] - The currently active tab row.
+ * Renders all "add component" buttons for the current tab (column).
+ * Toggles visibility of buttons based on the currently selected tab (tab number = column number).
+ * @param {number} [active_tab=1] - The currently active tab (1-4, equals target column number).
  */
 export function render_component_buttons(active_tab = 1) {
-  // Store the active tab so the click handler can access it
+  // Store the active tab (column) so the click handler can access it
   main_tabs_panel.dataset.activeTab = active_tab.toString();
 
   // Only render buttons once
@@ -173,24 +171,24 @@ export function render_component_buttons(active_tab = 1) {
     main_tabs_panel.innerHTML = buttonsHTML;
     main_tabs_panel.dataset.initialized = 'true';
 
-    // Set up event delegation for button clicks
+    // Set up event delegation for button clicks (activeTab = target column)
     main_tabs_panel.addEventListener('click', (e) => {
       const button = e.target.closest('button[data-type-id]');
       if (button) {
         const typeId = parseInt(button.dataset.typeId, 10);
-        const activeTab = parseInt(main_tabs_panel.dataset.activeTab || '1', 10);
-        addComponentInstance(typeId, activeTab);
+        const targetColumn = parseInt(main_tabs_panel.dataset.activeTab || '1', 10);
+        addComponentInstance(typeId, targetColumn);
         render_component_items();
         update_button_states();
       }
     });
   }
 
-  // Toggle button visibility based on active tab
+  // Toggle button visibility based on active tab (column)
   componentCatalog.forEach(compType => {
     const button = document.getElementById(`${component_add_button_id_prefix}${compType.typeId}`);
     if (button) {
-      if (rowMatchesActiveTab(compType.row, active_tab)) {
+      if (columnMatchesActiveTab(compType.column, active_tab)) {
         button.classList.remove('hidden');
       } else {
         button.classList.add('hidden');
