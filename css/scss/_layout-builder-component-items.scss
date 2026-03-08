@@ -7,11 +7,9 @@
   color: var(--imColTextPrimary, var(--imColWhite));
   background-color: var(--imfListRowBgCol, var(--imColBlack40));
   box-shadow: var(--imLbShadowSm);
-  // padding: var(--imGapTiny) var(--imGapSmall);
   display: flex;
   flex-direction: column;
   gap: 2px;
-  opacity: 1;
   overflow: hidden;
   border: 0;
   border-radius: var(--imThemeBorderRadiusSm);
