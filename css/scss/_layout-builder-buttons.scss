@@ -2,7 +2,7 @@
 
 .lb-aside-tabs-pane-btn {
   font-family: var(--imPrimaryFontStack);
-  font-size: 13px;
+  font-size: var(--imGlobalFontSize, 13px);
   color: var(--imColWhite);
   cursor: pointer;
   background-color: var(--imColBlack40);
@@ -15,9 +15,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
+  padding: var(--imGapSmall);
   text-align: left;
-  gap: 8px;
+  gap: var(--imGapSmall);
   transition:
     opacity var(--fadeTransitionDuration) ease,
     height var(--fadeTransitionDuration) ease,
@@ -43,6 +43,18 @@
   }
 }
 
+.icon-aside-component-add {
+  color: var(--imColBlack60);
+  fill: var(--imIndexIconNeutralFill, var(--imColWhite));
+  transition: transform 150ms ease-in-out;
+  width: 26px;
+  height: 26px;
+
+  .lb-aside-tabs-pane-btn:hover & {
+    transform: scale(1.1);
+  }
+}
+
 .lb-aside-tabs-pane-btn.fading-out,
 .lb-component-item-wrapper.fading-out {
   opacity: 0;
@@ -54,18 +66,18 @@
 
 .lb-aside-actions-btn {
   font-family: var(--imPrimaryFontStackSemiBold);
-  font-size: 13px;
+  font-size: var(--imGlobalFontSize, 13px);
   color: var(--imColBlack);
   cursor: pointer;
   width: 100%;
-  padding: 10px 16px;
+  padding: var(--imGapSmall) var(--imGapLarge);
   background-color: var(--imColWhite);
   border: 2px solid var(--imColBlack20);
   border-radius: var(--imThemeBorderRadiusSm);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--imGapSmall);
   transition: all 150ms ease-in-out;
 
   svg {
@@ -77,7 +89,7 @@
     border-color: var(--imColSecondary);
     color: var(--imColSecondary);
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--imLbFocusShadowCol);
   }
 
   &:active {
@@ -105,24 +117,24 @@
 }
 
 .lb-aside-actions-btn.btn-danger {
-  color: var(--imColRed);
-  border-color: var(--imColRed);
+  color: var(--imThemeColAlert, var(--imColRed));
+  border-color: var(--imThemeColAlert, var(--imColRed));
 
   &:hover {
-    background-color: var(--imColRed);
-    border-color: var(--imColRed);
+    background-color: var(--imThemeColAlert, var(--imColRed));
+    border-color: var(--imThemeColAlert, var(--imColRed));
     color: var(--imColWhite);
   }
 }
 
 .lb-aside-info-close-btn {
   font-family: var(--imPrimaryFontStackSemiBold);
-  font-size: 13px;
+  font-size: var(--imGlobalFontSize, 13px);
   color: var(--imColWhite);
   cursor: pointer;
   border: 0;
   background-color: var(--imColBlack);
-  padding: 8px 16px;
+  padding: var(--imGapSmall) var(--imGapLarge);
   border-radius: var(--imThemeBorderRadiusSm);
   align-self: stretch;
   transition: all 150ms ease-in-out;
@@ -130,7 +142,7 @@
   &:hover {
     background-color: var(--imColSecondary);
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--imLbFocusShadowCol);
   }
 
   &:active {
@@ -146,7 +158,6 @@
 .lb-component-trigger-btn {
   cursor: pointer;
   padding: 0;
-  //background-color: var(--imColBlack20);
   background-color: transparent;
   border: none;
   display: flex;
@@ -155,22 +166,20 @@
   border-radius: 50%;
   transition: transform 150ms ease-in-out;
 
-
   &:focus-visible {
     outline: 2px solid var(--imColSecondary);
     outline-offset: 2px;
   }
 
   &:hover {
-    transform: scale(1.2);
+    transform: var(--imIndexIconActionHoverTransform, scale(1.2));
   }
 }
 
 .lb-component-trigger-icon {
   width: 28px;
   height: 28px;
-  //background-color: var(--imColBlack60);
-  fill: var(--imColWhite);
+  fill: var(--imIndexIconNeutralFill, var(--imColWhite));
   transition: fill 150ms ease-in-out;
 
   // .lb-component-trigger-btn:hover & {

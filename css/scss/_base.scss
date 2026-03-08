@@ -53,9 +53,9 @@ html {
 
 body {
   font-family: var(--imPrimaryFontStack);
-  font-size: 13px;
+  font-size: var(--imGlobalFontSize, 13px);
   line-height: 1.5;
-  color: var(--imColBlackAbaddon);
+  color: var(--imColTextPrimary, var(--imColBlackAbaddon));
   background-color: var(--imColBlack3);
   height: 100%;
   margin: 0;
@@ -100,11 +100,11 @@ li {
 }
 
 .imRadioLabel {
-  font-size: 13px;
+  font-size: var(--imGlobalFontSize, 13px);
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--imGapTiny);
   transition: color 150ms ease-in-out;
 
   &:hover {

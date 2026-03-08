@@ -5,8 +5,8 @@
   grid-template-columns: 2fr 2fr;
   grid-auto-rows: auto;
   align-content: start;
-  padding: 20px;
-  gap: 16px;
+  padding: var(--imGapExtraLarge);
+  gap: var(--imGapLarge);
   background-color: var(--imColWhite);
   height: 100vh;
   overflow-y: auto;
@@ -17,8 +17,8 @@
 
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 16px;
+    gap: var(--imGapMedium);
+    padding: var(--imGapLarge);
   }
 }
 
@@ -51,20 +51,20 @@
 .lb-body-column-target-wrapper {
   border: 2px solid var(--imColBlack20);
   box-sizing: border-box;
-  padding: 12px;
+  padding: var(--imGapMedium);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--imGapSmall);
   min-height: 150px;
   border-radius: 0 0 var(--imThemeBorderRadiusSm) var(--imThemeBorderRadiusSm);
   background-color: var(--imColWhite);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--imLbShadowSm);
   position: relative;
   transition: all 150ms ease-in-out;
 
   &.active {
     border-color: var(--imColSecondary);
-    box-shadow: 0 2px 6px rgba(63, 60, 228, 0.1);
+    box-shadow: 0 2px 6px var(--imLbFocusGlowCol);
     z-index: 1;
   }
 
@@ -103,7 +103,7 @@
   width: 40px;
   height: 40px;
   fill: var(--imColBlack30);
-  margin-bottom: 8px;
+  margin-bottom: var(--imGapSmall);
   transition: fill 150ms ease-in-out;
 
   .lb-body-column-target-wrapper:hover & {
@@ -124,13 +124,13 @@
 
 .sortable-drag {
   opacity: 1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--imLbShadowLg);
 }
 
 // Drag highlight state for columns
 .lb-body-column-target-wrapper.sortable-drag-over,
 .lb-body-column-target-wrapper.sortable-drag-active {
   border-color: var(--imColSecondary);
-  background-color: rgba(63, 60, 228, 0.03);
-  box-shadow: 0 0 0 2px rgba(63, 60, 228, 0.1);
+  background-color: var(--imLbFocusGlowColLight);
+  box-shadow: 0 0 0 2px var(--imLbFocusGlowCol);
 }

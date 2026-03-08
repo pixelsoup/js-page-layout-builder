@@ -1,11 +1,13 @@
 // Component Items
 
 .lb-component-item-wrapper {
-  font-size: 13px;
-  color: var(--imColWhite);
-  background-color: var(--imColBlack40);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 4px 8px;
+  font-size: var(--imfListRowTextsize, 13px);
+  font-family: var(--imfListRowTextFontStack, var(--imPrimaryFontStack));
+  line-height: var(--imfListRowTextlineheight, 1.1);
+  color: var(--imColTextPrimary, var(--imColWhite));
+  background-color: var(--imfListRowBgCol, var(--imColBlack40));
+  box-shadow: var(--imLbShadowSm);
+  padding: var(--imGapTiny) var(--imGapSmall);
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -22,12 +24,12 @@
     all 150ms ease-in-out;
 
   &:hover {
-    background-color: var(--imColBlack50);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    background-color: var(--imfListRowContrastBgCol, var(--imColBlack50));
+    box-shadow: var(--imLbShadowMd);
   }
 
   &:focus-within {
-    background-color: var(--imColBlack50);
+    background-color: var(--imfListRowContrastBgCol, var(--imColBlack50));
     box-shadow: 0 0 0 2px var(--imColSecondary);
   }
 
@@ -37,9 +39,9 @@
 }
 
 .lb-component-item-header-name {
-  font-family: var(--imPrimaryFontStack);
-  font-size: 12px;
-  color: var(--imColWhite);
+  font-family: var(--imfListRowTextFontStack, var(--imPrimaryFontStack));
+  font-size: var(--imfListRowTextsize, 12px);
+  color: var(--imColTextPrimary, var(--imColWhite));
   cursor: grab;
   display: flex;
   align-items: center;
@@ -56,7 +58,7 @@
 .lb-component-triggers-wrapper {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--imGapTiny);
   flex-wrap: wrap;
   width: 100%;
   padding-block: 3px;  // match padding of header name
@@ -65,18 +67,18 @@
 .lb-component-trigger-btns-wrapper {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--imGapTiny);
   margin-left: auto;
 }
 
 .lb-component-visibility-select {
   font-size: 11px;
-  color: var(--imColWhite);
+  color: var(--imColTextPrimary, var(--imColWhite));
   cursor: pointer;
   padding: 3px 6px;
-  border: 1px solid var(--imColBlack60);
+  border: 1px solid var(--imfListRowBorderCol, var(--imColBlack60));
   border-radius: var(--imThemeBorderRadiusSm);
-  background-color: var(--imColBlack70);
+  background-color: var(--imfListRowContrastBgCol, var(--imColBlack70));
   min-width: 0;
   width: max-content;
   transition: all 150ms ease-in-out;
@@ -89,7 +91,7 @@
   &:focus {
     outline: none;
     border-color: var(--imColSecondary);
-    box-shadow: 0 0 0 2px rgba(63, 60, 228, 0.3);
+    box-shadow: 0 0 0 2px var(--imLbFocusRingCol);
   }
 }
 
@@ -102,7 +104,7 @@
   display: inline-block;
   padding: 2px 4px;
   border-radius: 2px;
-  margin-left: 4px;
+  margin-left: var(--imGapTiny);
 }
 
 .lb-component-visibility-badge.visibility-badge-desktop {

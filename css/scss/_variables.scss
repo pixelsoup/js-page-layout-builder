@@ -58,10 +58,20 @@ $colMargin: -($colBorderWidth / 2);
   --imGapLarge: 16px;
   --imGapExtraLarge: 20px;
 
-    // THEME RADIUS
+  // THEME RADIUS
   --imThemeBorderRadiusSm: 4px;
   --imThemeBorderRadiusMd: 6px;
   --imThemeBorderRadiusLg: 10px;
   --fadeTransitionDuration: 300ms;
+
+  // Layout builder focus/glow (themeable when in CMS)
+  --imLbFocusShadowCol: rgba(63, 60, 228, 0.2);
+  --imLbFocusGlowCol: rgba(63, 60, 228, 0.1);
+  --imLbFocusGlowColLight: rgba(63, 60, 228, 0.03);
+  --imLbFocusRingCol: rgba(63, 60, 228, 0.3);
+  --imLbShadowSm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --imLbShadowMd: 0 2px 6px rgba(0, 0, 0, 0.15);
+  --imLbShadowLg: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --imLbShadowPanel: -2px 0 8px rgba(0, 0, 0, 0.05);
 
 }
