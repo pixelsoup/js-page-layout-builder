@@ -148,7 +148,7 @@ export function render_component_items() {
 
       const component_element = document.createElement('div');
       component_element.id = `${component_item_id_prefix}-${instance.instanceId}`;
-      component_element.className = component_item_wrapper_class;
+      component_element.className = `${component_item_wrapper_class} js-component-item-wrapper`;
       component_element.dataset.id = instance.instanceId;
       component_element.dataset.position = instance.position;
       component_element.dataset.name = compType.componentName;
