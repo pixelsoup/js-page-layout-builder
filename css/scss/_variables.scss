@@ -6,6 +6,11 @@ $colMargin: -($colBorderWidth / 2);
 
   @include imColTintsBlack(#000000);
 
+  // Font stacks (Lexend, CMS naming)
+  --imPrimaryFontStack: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  --imPrimaryFontStackSemiBold: 'Lexend SemiBold', 'Helvetica', 'Arial', sans-serif;
+  --imPrimaryFontStackBold: 'Lexend Bold', 'Helvetica', 'Arial', sans-serif;
+
     // iMotor Colours
   --imColPrimary: #e1e43c;
   --imColPrimary105: #c9cd36;

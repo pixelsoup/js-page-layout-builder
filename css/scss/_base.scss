@@ -16,24 +16,6 @@
   src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Lexend-Bold.woff2") format("woff2");
 }
 
-@font-face {
-  font-family: 'Roboto Regular';
-  font-style: normal;
-  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: 'Roboto SemiBold';
-  font-style: normal;
-  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-SemiBold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: 'Roboto Bold';
-  font-style: normal;
-  src: url("https://s3-ap-southeast-2.amazonaws.com/assets.i-motor.com.au/webfonts/Roboto-Bold.woff2") format("woff2");
-}
-
 *,
 *:before,
 *:after {
@@ -70,7 +52,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto Regular', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStack);
   font-size: 13px;
   line-height: 1.5;
   color: var(--imColBlackAbaddon);
@@ -82,13 +64,13 @@ body {
 }
 
 strong {
-  font-family: 'Roboto SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStackSemiBold);
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStack);
   line-height: 1.2;
   margin: 0;
 }

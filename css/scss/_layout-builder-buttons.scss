@@ -1,7 +1,7 @@
 // Buttons
 
 .lb-aside-tabs-pane-btn {
-  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStack);
   font-size: 13px;
   color: var(--imColWhite);
   cursor: pointer;
@@ -53,14 +53,14 @@
 }
 
 .lb-aside-actions-btn {
-  font-family: 'Roboto SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStackSemiBold);
   font-size: 13px;
   color: var(--imColBlack);
   cursor: pointer;
   width: 100%;
   padding: 10px 16px;
   background-color: var(--imColWhite);
-  border: 1px solid var(--imColBlack20);
+  border: 2px solid var(--imColBlack20);
   border-radius: var(--imThemeBorderRadiusSm);
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@
 }
 
 .lb-aside-info-close-btn {
-  font-family: 'Roboto SemiBold', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStackSemiBold);
   font-size: 13px;
   color: var(--imColWhite);
   cursor: pointer;
@@ -178,20 +178,20 @@
   // }
 }
 
-.icon-info {
-  .lb-component-trigger-btn:hover & {
-    // fill: var(--imColSecondary);
-  }
-}
+// .icon-info {
+//   .lb-component-trigger-btn:hover & {
+//     fill: var(--imColSecondary);
+//   }
+// }
 
-.icon-duplicate {
-  .lb-component-trigger-btn:hover & {
-    // fill: var(--imColSecondary);
-  }
-}
+// .icon-duplicate {
+//   .lb-component-trigger-btn:hover & {
+//     fill: var(--imColSecondary);
+//   }
+// }
 
-.icon-delete  {
-  .lb-component-trigger-btn:hover & {
-    //fill: var(--imColRed);
-  }
-}
+// .icon-delete  {
+//   .lb-component-trigger-btn:hover & {
+//     fill: var(--imColRed);
+//   }
+// }

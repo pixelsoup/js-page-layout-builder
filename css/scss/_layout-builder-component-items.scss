@@ -37,7 +37,7 @@
 }
 
 .lb-component-item-header-name {
-  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStack);
   font-size: 12px;
   color: var(--imColWhite);
   cursor: grab;
@@ -95,7 +95,7 @@
 
 // Visibility badges
 .lb-component-visibility-badge {
-  font-family: 'Lexend Regular', 'Helvetica', 'Arial', sans-serif;
+  font-family: var(--imPrimaryFontStack);
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
