@@ -1,6 +1,6 @@
 import { render_component_buttons, render_component_items, setEventHandlers, setSortableInitializer } from './rendering.js';
 import { initTabButtons, initColumnClickHandlers } from './tab-manager.js';
-import { initDrawerCloseButton, initEscapeKeyHandler, attachInfoButtonEvent, attachDuplicateButtonEvent, attach_component_events } from './event-handlers.js';
+import { initDrawerCloseButton, initEscapeKeyHandler, attachInfoButtonEvent, attach_component_events } from './event-handlers.js';
 import { initCopyConfigButton, initClearAllButton, exportConfiguration, copyConfigToClipboard } from './export.js';
 import { initSortableListener } from './sortable-handler.js';
 import { initializeSortable } from './sortable-init.js';
@@ -19,7 +19,7 @@ function init() {
   }
   
   // Set event handlers in rendering module to avoid circular dependency
-  setEventHandlers({ attachInfoButtonEvent, attachDuplicateButtonEvent, attach_component_events });
+  setEventHandlers({ attachInfoButtonEvent, attach_component_events });
   
   // Set sortable initializer in rendering module to avoid circular dependency
   setSortableInitializer(initializeSortable);

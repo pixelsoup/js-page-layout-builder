@@ -8,7 +8,6 @@ import {
 import {
   componentInstances,
   deleteComponentInstance,
-  duplicateComponentInstance,
   updateInstanceVisibility,
   reindexColumn
 } from './data-model.js';
@@ -103,23 +102,6 @@ export function attachInfoButtonEvent(instanceId, typeId) {
     infoButton.onclick = () => {
       toggleComponentInfoDrawer(true);
       toggleComponentInformation(typeId);
-    };
-  }
-}
-
-/**
- * Attach event listener to duplicate button
- * @param {string} instanceId
- */
-export function attachDuplicateButtonEvent(instanceId) {
-  const duplicateButton = document.getElementById(`js-component-btn-duplicate-${instanceId}`);
-  if (duplicateButton) {
-    duplicateButton.onclick = () => {
-      const newInstance = duplicateComponentInstance(instanceId);
-      if (newInstance) {
-        reindexColumn(newInstance.column);
-        render_component_items();
-      }
     };
   }
 }

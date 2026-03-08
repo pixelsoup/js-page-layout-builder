@@ -29,11 +29,10 @@ export function setSortableInitializer(fn) {
 }
 
 // Event handler attachers will be imported dynamically to avoid circular deps
-let attachInfoButtonEvent, attachDuplicateButtonEvent, attach_component_events;
+let attachInfoButtonEvent, attach_component_events;
 
 export function setEventHandlers(handlers) {
   attachInfoButtonEvent = handlers.attachInfoButtonEvent;
-  attachDuplicateButtonEvent = handlers.attachDuplicateButtonEvent;
   attach_component_events = handlers.attach_component_events;
 }
 
@@ -85,7 +84,7 @@ function getVisibilityBadge(hideOnMobile, hideOnDesktop) {
  */
 function createComponentButtonContentHTML(compType, instanceCount) {
   const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-  return `${compType.name}${countLabel} <svg class="icon-svg icon-aside-component-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
+  return `${compType.name}${countLabel} <svg class="icon-svg icon-aside-component-add"><use xlink:href="#svg-duplicate"></use></svg>`;
 }
 
 /**
@@ -134,7 +133,7 @@ function createComponentItemHTML(instance, compType) {
   const visibility_selector = createVisibilitySelectorHTML(instance.instanceId, visibilityValue);
   const visibilityBadge = getVisibilityBadge(instance.hideOnMobile, instance.hideOnDesktop);
 
-  return `<div class="lb-component-item-header-name js-component-item-header-name" title="Drag to reorder"><svg class="lg-icon icon-component-grabber"><use xlink:href="#svg-grabber"></use></svg>${compType.name}${visibilityBadge}</div><div class="lb-component-triggers-wrapper"><button id="js-component-btn-info-${instance.instanceId}" class="lb-component-trigger-btn btn-info" title="Component info"><svg class="lb-component-trigger-icon icon-info"><use xlink:href="#svg-info-circle"></use></svg></button>${visibility_selector}<div class="lb-component-trigger-btns-wrapper"><button id="js-component-btn-duplicate-${instance.instanceId}" class="lb-component-trigger-btn btn-duplicate" title="Duplicate component"><svg class="lb-component-trigger-icon icon-duplicate"><use xlink:href="#svg-duplicate"></use></svg></button><button class="lb-component-trigger-btn btn-delete js-btn-delete" data-instance-id="${instance.instanceId}" title="Delete component"><svg class="lb-component-trigger-icon icon-delete"><use xlink:href="#svg-trash"></use></svg></button></div></div>`;
+  return `<div class="lb-component-item-header-name js-component-item-header-name" title="Drag to reorder"><svg class="lg-icon icon-component-grabber"><use xlink:href="#svg-grabber"></use></svg>${compType.name}${visibilityBadge}</div><div class="lb-component-triggers-wrapper"><button id="js-component-btn-info-${instance.instanceId}" class="lb-component-trigger-btn btn-info" title="Component info"><svg class="lb-component-trigger-icon icon-info"><use xlink:href="#svg-info-circle"></use></svg></button>${visibility_selector}<div class="lb-component-trigger-btns-wrapper"><button class="lb-component-trigger-btn btn-delete js-btn-delete" data-instance-id="${instance.instanceId}" title="Delete component"><svg class="lb-component-trigger-icon icon-delete"><use xlink:href="#svg-trash"></use></svg></button></div></div>`;
 }
 
 /**
@@ -249,7 +248,6 @@ export function render_component_items() {
 
       // Attach event listeners
       attachInfoButtonEvent(instance.instanceId, compType.typeId);
-      attachDuplicateButtonEvent(instance.instanceId);
     });
   });
 

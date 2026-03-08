@@ -135,33 +135,6 @@ export function deleteComponentInstance(instanceId) {
 }
 
 /**
- * Duplicate a component instance
- * @param {string} instanceId
- * @returns {object|null} - The new instance or null
- */
-export function duplicateComponentInstance(instanceId) {
-  const instance = componentInstances.find(inst => inst.instanceId === instanceId);
-  if (!instance) return null;
-
-  // Create duplicate with same properties but new ID
-  const newInstance = {
-    instanceId: generateInstanceId(),
-    typeId: instance.typeId,
-    column: instance.column,
-    position: instance.position + 1,
-    hideOnMobile: instance.hideOnMobile,
-    hideOnDesktop: instance.hideOnDesktop
-  };
-
-  // Insert after the current instance
-  const currentIndex = componentInstances.findIndex(inst => inst.instanceId === instanceId);
-  componentInstances.splice(currentIndex + 1, 0, newInstance);
-
-  saveToStorage(componentInstances);
-  return newInstance;
-}
-
-/**
  * Update instance column
  * @param {string} instanceId
  * @param {number} newColumn
