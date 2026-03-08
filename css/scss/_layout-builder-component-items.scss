@@ -27,10 +27,6 @@
     box-shadow: var(--imLbShadowMd);
   }
 
-  &:focus-within {
-    box-shadow: 0 0 0 2px var(--imColSecondary);
-  }
-
   &:last-child {
     margin: 0;
   }
@@ -87,25 +83,20 @@
 
 .lb-component-visibility-select {
   font-size: 11px;
-  color: var(--imColTextPrimary, var(--imColWhite));
   cursor: pointer;
   padding: 3px 6px;
   border: 1px solid var(--imfListRowBorderCol, var(--imColBlack60));
   border-radius: var(--imThemeBorderRadiusSm);
-  background-color: var(--imfListRowContrastBgCol, var(--imColBlack70));
   min-width: 0;
   width: max-content;
-  transition: all 150ms ease-in-out;
+  transition: border-color 150ms ease-in-out;
 
   &:hover {
     border-color: var(--imColSecondary);
-    background-color: var(--imColBlack80);
   }
 
   &:focus {
     outline: none;
-    border-color: var(--imColSecondary);
-    box-shadow: 0 0 0 2px var(--imLbFocusRingCol);
   }
 }
 
