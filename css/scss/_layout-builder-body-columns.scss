@@ -7,7 +7,7 @@
   align-content: start;
   padding: 20px;
   gap: 16px;
-  background-color: var(--imColBlack3);
+  background-color: var(--imColWhite);
   height: 100vh;
   overflow-y: auto;
 
@@ -40,12 +40,12 @@
   letter-spacing: 0.5px;
   color: var(--imColBlack70);
   text-align: center;
-  margin-bottom: 8px;
   padding: 6px 10px;
   background-color: var(--imColBlack8);
-  border-radius: 3px;
+  border-radius: var(--imThemeBorderRadiusSm) var(--imThemeBorderRadiusSm) 0 0;
   border: 1px solid var(--imColBlack15);
 }
+
 
 .lb-body-column-target-wrapper {
   border: 2px solid var(--imColBlack20);
@@ -55,7 +55,7 @@
   flex-direction: column;
   gap: 8px;
   min-height: 150px;
-  border-radius: var(--imThemeBorderRadiusSm);
+  border-radius: 0 0 var(--imThemeBorderRadiusSm) var(--imThemeBorderRadiusSm);
   background-color: var(--imColWhite);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: relative;

@@ -38,6 +38,33 @@ export function setEventHandlers(handlers) {
 }
 
 /**
+ * Check if a component row matches the active tab
+ * Supports both single number and array of numbers for backward compatibility
+ * @param {number|number[]} row - Row value (number or array)
+ * @param {number} active_tab - Active tab number
+ * @returns {boolean}
+ */
+function rowMatchesActiveTab(row, active_tab) {
+  if (Array.isArray(row)) {
+    return row.includes(active_tab);
+  }
+  return row === active_tab;
+}
+
+/**
+ * Get CSS classes for component button based on row(s)
+ * Supports both single number and array of numbers for backward compatibility
+ * @param {number|number[]} row - Row value (number or array)
+ * @returns {string} CSS classes
+ */
+function getRowClasses(row) {
+  if (Array.isArray(row)) {
+    return row.map(r => `btn-row${r}`).join(' ');
+  }
+  return `btn-row${row}`;
+}
+
+/**
  * Get visibility badge text
  * @param {boolean} hideOnMobile
  * @param {boolean} hideOnDesktop
@@ -53,14 +80,27 @@ function getVisibilityBadge(hideOnMobile, hideOnDesktop) {
 }
 
 /**
- * Create component button HTML
+ * Create component button inner content HTML (text, count, and SVG icon)
+ * @param {object} compType - Component type from catalog
+ * @param {number} instanceCount - Number of instances of this type
+ * @returns {string} HTML string for button inner content
+ */
+function createComponentButtonContentHTML(compType, instanceCount) {
+  const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
+  return `${compType.name}${countLabel} <svg class="icon-svg icon-aside-component-add"><use xlink:href="#svg-circle-plus"></use></svg>`;
+}
+
+/**
+ * Create component button HTML (full button element)
  * @param {object} compType - Component type from catalog
  * @param {number} instanceCount - Number of instances of this type
  * @returns {string} HTML string for button
  */
 function createComponentButtonHTML(compType, instanceCount) {
   const countLabel = instanceCount > 0 ? ` (${instanceCount})` : '';
-  return `<button id="${component_add_button_id_prefix}${compType.typeId}" class="lb-aside-tabs-pane-btn btn-row${compType.row}" title="Add ${compType.name} component" data-type-id="${compType.typeId}">${compType.name}${countLabel} <svg class="icon-svg icon-aside-component-add"><use xlink:href="#svg-circle-plus"></use></svg></button>`;
+  const rowClasses = getRowClasses(compType.row);
+  const content = createComponentButtonContentHTML(compType, instanceCount);
+  return `<button id="${component_add_button_id_prefix}${compType.typeId}" class="lb-aside-tabs-pane-btn ${rowClasses}" title="Add ${compType.name} component" data-type-id="${compType.typeId}">${content}</button>`;
 }
 
 /**
@@ -68,7 +108,7 @@ function createComponentButtonHTML(compType, instanceCount) {
  * @returns {string} HTML string for empty state
  */
 function createEmptyStateHTML() {
-  return `<div class="lb-empty-state-wrapper js-empty-state-wrapper"><svg class="icon-lb-empty-state" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><p class="lb-empty-state-text">Drop components here</p></div>`;
+  return `<div class="lb-empty-state-wrapper js-empty-state-wrapper"><svg class="icon-lb-empty-state" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><p class="lb-empty-state-text">No components yet</p></div>`;
 }
 
 /**
@@ -120,6 +160,9 @@ function getColumnElement(column_id) {
  * @param {number} [active_tab=1] - The currently active tab row.
  */
 export function render_component_buttons(active_tab = 1) {
+  // Store the active tab so the click handler can access it
+  main_tabs_panel.dataset.activeTab = active_tab.toString();
+
   // Only render buttons once
   if (!main_tabs_panel.dataset.initialized) {
     const buttonsHTML = componentCatalog.map(compType => {
@@ -135,7 +178,8 @@ export function render_component_buttons(active_tab = 1) {
       const button = e.target.closest('button[data-type-id]');
       if (button) {
         const typeId = parseInt(button.dataset.typeId, 10);
-        addComponentInstance(typeId);
+        const activeTab = parseInt(main_tabs_panel.dataset.activeTab || '1', 10);
+        addComponentInstance(typeId, activeTab);
         render_component_items();
         update_button_states();
       }
@@ -146,7 +190,7 @@ export function render_component_buttons(active_tab = 1) {
   componentCatalog.forEach(compType => {
     const button = document.getElementById(`${component_add_button_id_prefix}${compType.typeId}`);
     if (button) {
-      if (compType.row === active_tab) {
+      if (rowMatchesActiveTab(compType.row, active_tab)) {
         button.classList.remove('hidden');
       } else {
         button.classList.add('hidden');
@@ -166,7 +210,7 @@ export function update_button_states() {
     const add_button = document.getElementById(`${component_add_button_id_prefix}${compType.typeId}`);
     if (add_button) {
       const instanceCount = getInstancesByType(compType.typeId).length;
-      add_button.innerHTML = createComponentButtonHTML(compType, instanceCount);
+      add_button.innerHTML = createComponentButtonContentHTML(compType, instanceCount);
     }
   });
 }

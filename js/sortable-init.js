@@ -107,7 +107,7 @@ export function initializeSortable() {
               <svg class="icon-lb-empty-state" viewBox="0 0 24 24">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
               </svg>
-              <p class="lb-empty-state-text">Drop components here</p>
+              <p class="lb-empty-state-text">No components yet</p>
             `;
             colEl.appendChild(emptyState);
           } else if (componentItems.length > 0 && hasEmptyState) {

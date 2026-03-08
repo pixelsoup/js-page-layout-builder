@@ -77,18 +77,42 @@ export function get_sorted_instances(column_id) {
 }
 
 /**
+ * Get the primary row number from a row value (number or array)
+ * Used for determining default column placement
+ * @param {number|number[]} row - Row value (number or array)
+ * @returns {number} Primary row number (first element if array, or the number itself)
+ */
+function getPrimaryRow(row) {
+  if (Array.isArray(row)) {
+    return row[0]; // Use first row for default column determination
+  }
+  return row;
+}
+
+/**
  * Add a new component instance
  * @param {number} typeId
+ * @param {number} [activeTab] - Active tab number (1, 2, or 3). Used for multi-row components to determine placement.
  */
-export function addComponentInstance(typeId) {
+export function addComponentInstance(typeId, activeTab) {
   const compType = getComponentType(typeId);
   if (!compType) return;
 
-  // Determine column
+  // Determine which row to use for column placement
+  let targetRow;
+  if (activeTab && Array.isArray(compType.row) && compType.row.includes(activeTab)) {
+    // For multi-row components, use the active tab if it's valid for this component
+    targetRow = activeTab;
+  } else {
+    // Fallback to primary row (first row if array, or the row itself)
+    targetRow = getPrimaryRow(compType.row);
+  }
+
+  // Determine column based on target row
   let column;
-  if (compType.row === 1) column = 1;
-  else if (compType.row === 2) column = compType.defaultColumn || column_two_id;
-  else if (compType.row === 3) column = 4;
+  if (targetRow === 1) column = 1;
+  else if (targetRow === 2) column = column_two_id;
+  else if (targetRow === 3) column = 4;
 
   // Get existing instances in this column to determine position
   const existingInColumn = componentInstances

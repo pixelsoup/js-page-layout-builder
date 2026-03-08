@@ -18,21 +18,24 @@ export const column_two_id = 2;
 export const column_three_id = 3;
 
 // Component catalog - read-only list of available component types
+// The 'row' property is an array of numbers (e.g., row: [1] or row: [1, 2]) to allow components
+// to appear in multiple row tabs.
 export const componentCatalog = [
-  { typeId: 1, componentName: 'small_image_heading', name: 'Small Image and Heading', row: 1 },
-  { typeId: 2, componentName: 'ctas', name: 'CTAs', row: 1 },
-  { typeId: 3, componentName: 'price', name: 'Price', row: 1 },
-  { typeId: 4, componentName: 'image_carousel', name: 'Image Carousel', row: 2, defaultColumn: column_two_id },
-  { typeId: 5, componentName: 'heading_ctas', name: 'Heading and CTAs', row: 2, defaultColumn: column_two_id },
-  { typeId: 6, componentName: 'finance_calculator', name: 'Finance Calculator', row: 2, defaultColumn: column_two_id },
-  { typeId: 7, componentName: 'good_price_comparison', name: 'Good Price/Best Price Comparison', row: 2, defaultColumn: column_two_id },
-  { typeId: 8, componentName: 'stock_features', name: 'Stock Features', row: 2, defaultColumn: column_two_id },
-  { typeId: 9, componentName: 'stock_comments', name: 'Stock Comments', row: 2, defaultColumn: column_two_id },
-  { typeId: 10, componentName: 'accordion', name: 'Accordion', row: 2, defaultColumn: column_two_id },
-  { typeId: 11, componentName: 'similar_vehicles', name: 'Similar Vehicles', row: 2, defaultColumn: column_two_id },
-  { typeId: 12, componentName: 'enquire_now_form_accordion', name: 'Enquire Now Form Accordion', row: 2, defaultColumn: column_three_id },
-  { typeId: 13, componentName: 'wildcard', name: 'Wildcard', row: 2, defaultColumn: column_three_id },
-  { typeId: 14, componentName: 'map_locations', name: 'Map Locations', row: 3 }
+  { typeId: 1, componentName: 'small_image_heading', name: 'Small Image and Heading', row: [1] },
+  { typeId: 2, componentName: 'stock_ctas', name: 'CTAs', row: [1] },
+  { typeId: 3, componentName: 'stock_price', name: 'Price', row: [1] },
+  { typeId: 4, componentName: 'stock_image_carousel_wide', name: 'Image Carousel Wide', row: [1] },
+  { typeId: 5, componentName: 'stock_image_carousel', name: 'Image Carousel', row: [2] },
+  { typeId: 6, componentName: 'stock_heading_ctas', name: 'Heading and CTAs', row: [2] },
+  { typeId: 7, componentName: 'stock_finance_calculator', name: 'Finance Calculator', row: [2] },
+  { typeId: 8, componentName: 'stock_price_comparison', name: 'Price Comparison', row: [2] },
+  { typeId: 9, componentName: 'stock_features', name: 'Stock Features', row: [2] },
+  { typeId: 10, componentName: 'stock_comments', name: 'Stock Comments', row: [2] },
+  { typeId: 11, componentName: 'stock_wildcard', name: 'Wildcard', row: [2] },
+  { typeId: 12, componentName: 'stock_similar_vehicles', name: 'Similar Vehicles', row: [2, 3] },
+  { typeId: 13, componentName: 'stock_forms', name: 'Form', row: [2, 3] },
+  { typeId: 14, componentName: 'stock_form_accordion', name: 'Form Accordion', row: [2] },
+  { typeId: 15, componentName: 'stock_map_locations', name: 'Map Locations', row: [3] }
 ];
 
 // Fetches the configured fade transition duration from the root CSS variable, defaulting to 500ms if not set.
